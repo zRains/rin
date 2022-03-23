@@ -21,5 +21,8 @@
     "vite": "^2.8.6",
     "vite-plugin-ssr": "^0.3.60",
     "vue": "^3.2.31"
+  },
+  "devDependencies": {
+    "sass": "^1.49.9"
   }
 }

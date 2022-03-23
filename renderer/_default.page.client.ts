@@ -1,4 +1,4 @@
-import { createApp } from './app'
+import { createApp } from './App'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
 import type { PageContextBuiltInClient } from 'vite-plugin-ssr/client/router'
 

@@ -9,6 +9,9 @@ import {
 import { assign } from '../utils/helpers'
 import PageShell from './PageShell.vue'
 
+// Global Styles
+import './styles/global.scss'
+
 // Key of PageContext
 export const pageContextKey: InjectionKey<PageContext> = Symbol('PageContext')
 

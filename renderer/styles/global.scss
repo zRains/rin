@@ -1,0 +1,28 @@
+@import './colors.scss';
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'JetBrainsMono', monospace;
+  color: $grey1;
+}
+
+a {
+  color: $grey1;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+  }
+}

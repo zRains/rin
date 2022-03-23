@@ -15,7 +15,7 @@
 import Link from './Link.vue'
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   font-family: sans-serif;
