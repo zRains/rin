@@ -1,0 +1,5 @@
+@function gap($rate: 1) {
+  @return $rate * 10px;
+}
+$headerHeight: 60px;
+$maxContentWidth: 820px;

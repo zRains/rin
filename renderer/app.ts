@@ -1,19 +1,10 @@
-import {
-  createSSRApp,
-  defineComponent,
-  h,
-  markRaw,
-  provide,
-  InjectionKey,
-} from 'vue'
+import { createSSRApp, defineComponent, h, markRaw, provide } from 'vue'
 import { assign } from '../utils/helpers'
 import PageShell from './PageShell.vue'
+import { pageContextKey } from '../utils/constants'
 
 // Global Styles
 import './styles/global.scss'
-
-// Key of PageContext
-export const pageContextKey: InjectionKey<PageContext> = Symbol('PageContext')
 
 export function createApp(pageContext: PageContext) {
   const { Page, pageProps = {} } = pageContext
@@ -28,7 +19,7 @@ export function createApp(pageContext: PageContext) {
         pageProps: markRaw(pageProps),
       }
     },
-    beforeCreate() {
+    created() {
       rootComponent = this
     },
     render() {
