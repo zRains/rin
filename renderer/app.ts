@@ -1,30 +1,50 @@
-import { createSSRApp, defineComponent, h } from 'vue'
+import {
+  createSSRApp,
+  defineComponent,
+  h,
+  markRaw,
+  provide,
+  InjectionKey,
+} from 'vue'
+import { assign } from '../utils/helpers'
 import PageShell from './PageShell.vue'
-import { setPageContext } from './usePageContext'
-import type { PageContext } from './types'
 
-export { createApp }
+// Key of PageContext
+export const pageContextKey: InjectionKey<PageContext> = Symbol('PageContext')
 
-function createApp(pageContext: PageContext) {
-  const { Page, pageProps } = pageContext
-  const PageWithLayout = defineComponent({
+export function createApp(pageContext: PageContext) {
+  const { Page, pageProps = {} } = pageContext
+  let rootComponent: InstanceType<typeof PageWithWrapper>
+  const PageWithWrapper = defineComponent({
+    setup() {
+      provide(pageContextKey, pageContext)
+    },
+    data() {
+      return {
+        Page: markRaw(Page),
+        pageProps: markRaw(pageProps),
+      }
+    },
+    beforeCreate() {
+      rootComponent = this
+    },
     render() {
       return h(
         PageShell,
         {},
         {
-          default() {
-            return h(Page, pageProps || {})
+          default: () => {
+            return h(this.Page, this.pageProps)
           },
-        },
+        }
       )
     },
   })
-
-  const app = createSSRApp(PageWithLayout)
-
-  // Make `pageContext` available from any Vue component
-  setPageContext(app, pageContext)
-
-  return app
+  return assign(createSSRApp(PageWithWrapper), {
+    changePage(pageContext: PageContext) {
+      const { Page, pageProps = {} } = pageContext
+      rootComponent.Page = markRaw(Page)
+      rootComponent.pageProps = markRaw(pageProps)
+    },
+  })
 }

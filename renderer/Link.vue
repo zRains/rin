@@ -1,5 +1,5 @@
 <template>
-  <a :class="{ active: pageContext.urlPathname === $attrs.href }">
+  <a>
     <slot />
   </a>
 </template>
@@ -11,7 +11,4 @@ a.active {
   background-color: #eee;
 }
 </style>
-<script lang="ts" setup>
-import { usePageContext } from './usePageContext'
-const pageContext = usePageContext()
-</script>
+<script lang="ts" setup></script>
