@@ -5,6 +5,7 @@ import { pageContextKey } from '../utils/constants'
 
 // Global Styles
 import './styles/global.scss'
+import './styles/nprogress.scss'
 
 export function createApp(pageContext: PageContext) {
   const { Page, pageProps = {} } = pageContext

@@ -1,8 +1,12 @@
 import { createApp } from './App'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
 import type { PageContextBuiltInClient } from 'vite-plugin-ssr/client/router'
+import nprogress from 'nprogress'
 
 let AppInstance: ReturnType<typeof createApp> | null = null
+nprogress.configure({
+  showSpinner: false,
+})
 const { hydrationPromise } = useClientRouter({
   render(pageContext: PageContextBuiltInClient & PageContext) {
     if (!AppInstance) {
@@ -23,8 +27,8 @@ hydrationPromise.then(() => {
 })
 
 function onTransitionStart() {
-  console.log('Page transition start')
+  nprogress.start()
 }
 function onTransitionEnd() {
-  console.log('Page transition end')
+  nprogress.done()
 }

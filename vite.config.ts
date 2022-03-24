@@ -1,9 +1,16 @@
 import vue from '@vitejs/plugin-vue'
 import ssr from 'vite-plugin-ssr/plugin'
-import { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
+import markdownParser from './utils/markdown_parser'
 
-const config: UserConfig = {
-  plugins: [vue(), ssr()],
-}
-
-export default config
+export default defineConfig(() => {
+  return {
+    plugins: [
+      vue({
+        include: [/\.vue$/, /\.md$/],
+      }),
+      markdownParser({}),
+      ssr(),
+    ],
+  }
+})

@@ -12,12 +12,6 @@ export const headerLinks = [
     disable: false,
   },
   {
-    path: '/post',
-    name: 'post',
-    label: 'post',
-    disable: false,
-  },
-  {
     path: '/about',
     name: 'about',
     label: 'about',
