@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import ssr from 'vite-plugin-ssr/plugin'
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 import markdownParser from './utils/markdown_parser'
 
 export default defineConfig(() => {
@@ -12,5 +13,8 @@ export default defineConfig(() => {
       markdownParser(),
       ssr(),
     ],
+    resolve: {
+      alias: { '@post': resolve(__dirname, 'renderer/components/post') },
+    },
   }
 })

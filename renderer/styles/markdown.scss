@@ -47,12 +47,11 @@
 
   code,
   pre {
-    font-family: 'JetBrainsMono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
   }
 
   pre {
-    padding: 16px;
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
@@ -116,7 +115,7 @@
       border: 1px solid #dfe2e5;
     }
     th {
-      font-family: 'JetBrainsMono-Bold', monospace;
+      font-weight: 600;
     }
     tr {
       background-color: #fff;
@@ -128,8 +127,8 @@
   }
 
   strong {
-    font-weight: normal;
-    font-family: 'JetBrainsMono-Bold', monospace;
+    font-weight: 600;
+   
   }
 
   h1,
@@ -141,7 +140,7 @@
     margin-top: 24px;
     margin-bottom: 16px;
     line-height: 1.25;
-    font-family: 'JetBrainsMono-Bold', monospace;
+    font-weight: 600;
   }
 
   h1 {
@@ -186,7 +185,6 @@
     font: inherit;
     margin: 0;
     overflow: visible;
-    font-family: inherit;
     font-size: inherit;
     line-height: inherit;
   }

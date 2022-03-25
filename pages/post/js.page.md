@@ -1,8 +1,97 @@
-### [力扣-206](https://leetcode-cn.com/problems/reverse-linked-list/)
+---
+injectComponents: [{ name: 'Calc', path: '@post/calc.vue' }]
+author: 'zRain'
+---
 
-给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
+# A demo of `react-markdown`
 
-我的解法：
+`react-markdown` is a markdown component for React.
+
+👉 Changes are re-rendered as you type.
+
+👈 Try writing some markdown on the left.
+
+## Overview
+
+- Follows [CommonMark](https://commonmark.org)
+- Optionally follows [GitHub Flavored Markdown](https://github.github.com/gfm/)
+- Renders actual React elements instead of using `dangerouslySetInnerHTML`
+- Lets you define your own components (to render `MyHeading` instead of `h1`)
+- Has a lot of plugins
+
+Here is an example of a plugin in action
+([`remark-toc`](https://github.com/remarkjs/remark-toc)).
+This section is replaced by an actual table of contents.
+
+## Syntax highlighting
+
+Here is an example of a plugin to highlight code:
+[`rehype-highlight`](https://github.com/rehypejs/rehype-highlight).
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+
+ReactDOM.render(
+  <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+    {'# Your markdown here'}
+  </ReactMarkdown>,
+  document.querySelector('#content')
+)
+```
+
+Pretty neat, eh?
+
+## GitHub flavored markdown (GFM)
+
+For GFM, you can _also_ use a plugin:
+[`remark-gfm`](https://github.com/remarkjs/react-markdown#use).
+It adds support for GitHub-specific extensions to the language:
+tables, strikethrough, tasklists, and literal URLs.
+
+These features **do not work by default**.
+👆 Use the toggle above to add the plugin.
+
+|    Feature | Support              |
+| ---------: | :------------------- |
+| CommonMark | 100%                 |
+|        GFM | 100% w/ `remark-gfm` |
+
+~~strikethrough~~
+
+- [ ] task list
+- [x] checked item
+
+https://example.com
+
+## HTML in markdown
+
+⚠️ HTML in markdown is quite unsafe, but if you want to support it, you can
+use [`rehype-raw`](https://github.com/rehypejs/rehype-raw).
+You should probably combine it with
+[`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize).
+
+> 👆 Use the toggle above to add the plugin.
+
+## Components
+
+You can pass components to change things:
+
+## More info?
+
+Much more info is available in the
+[readme on GitHub](https://github.com/remarkjs/react-markdown)!
+
+---
+
+A component by [Espen Hovlandsdal](https://espen.codes/)
+
+| Alpha | Bravo   |
+| ----- | ------- |
+| 中文  | Charlie |
+| 👩‍❤️‍👩    | Delta   |
 
 ```js
 var reverseList = function (head) {
@@ -25,80 +114,12 @@ var reverseList = function (head) {
 }
 ```
 
-官方解法 1：
+<Calc/>
 
-```js
-var reverseList = function (head) {
-  // 由于是倒转，前一个节点必为null
-  let prev = null
-  let curr = head
-  while (curr) {
-    // 记录下一节点
-    const next = curr.next
-    // 将下一节点指向前一节点，以此实现倒转
-    curr.next = prev
-    prev = curr
-    curr = next
-  }
-  return prev
-}
-```
+<iframe height="300" style="width: 100%;" scrolling="no" title="CSS mouse-out transition effect" src="https://codepen.io/pocket-gad/embed/abwapXB?default-tab=result&theme-id=light" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
 
-- 时间复杂度：O(n)_O_(_n_)，其中 n*n* 是链表的长度。需要遍历链表一次。
-- 空间复杂度：O(1)_O_(1)。
+Using footnotes is fun![^1] They let you reference relevant information without disrupting the flow of what you’re trying to say.[^bignote]
 
-官方解法 2：
-
-```js
-var reverseList = function (head) {
-  if (head == null || head.next == null) {
-    return head
-  }
-  // 递归到最后一个节点
-  const newHead = reverseList(head.next)
-  head.next.next = head
-  head.next = null
-  return newHead
-}
-```
-
-### [力扣剑指 offer-06](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
-
-输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
-
-我的解法：使用递归
-
-```js
-var reversePrint = function (head) {
-  if (head) {
-    return head.next ? reversePrint(head.next).concat(head.val) : [head.val]
-  } else {
-    return []
-  }
-}
-```
-
-效率不如递推。
-
-其他解法：递推
-
-```javascript
-var reversePrint = function (head) {
-  let nums = []
-  let node = head
-  while (node !== null) {
-    // 通过unshift倒转数组
-    nums.unshift(node.val)
-    node = node.next
-  }
-  return nums
-}
-```
-
-结果对比：
-
-![image-20220320133657219](https://cdn.jsdelivr.net/gh/zrains/images/2022/03/image-20220320133657219-987a10ab5393bf4af9fa484bd2f99157.png)
-
-### [力扣剑指 offer-35](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
-
-请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+[^1]: This is the first footnote.
+[^bignote]: Here’s one with multiple paragraphs and code.

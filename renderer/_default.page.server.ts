@@ -1,6 +1,7 @@
 import { createApp } from './App'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
 import { renderToString } from '@vue/server-renderer'
+import avatar from '../public/images/avatar.png'
 import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 
 // See https://vite-plugin-ssr.com/data-fetching
@@ -21,8 +22,11 @@ export async function render(pageContext: PageContextBuiltIn & PageContext) {
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
-        <link rel="icon" href="./images/avatar.png" />
+        <link rel="icon" href="/images/avatar.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;600;800&display=swap" rel="stylesheet">
         <meta name="description" content="${desc}" />
         <title>${title}</title>
       </head>
