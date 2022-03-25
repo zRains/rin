@@ -5,6 +5,16 @@
   src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'JetBrainsMono-Light';
+  src: url('/fonts/JetBrainsMono-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono-Bold';
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
 html,
 body {
   margin: 0;
@@ -17,12 +27,4 @@ body {
 a {
   color: $grey1;
   text-decoration: none;
-}
-
-ul {
-  padding: 0;
-  margin: 0;
-  li {
-    list-style: none;
-  }
 }

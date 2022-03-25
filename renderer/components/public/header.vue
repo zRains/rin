@@ -23,9 +23,11 @@ import { headerLinks } from '../../../utils/constants'
   .linkBox {
     margin-left: auto;
     display: flex;
+    margin: 0 0 0 auto;
+    padding: 0;
     .headerLink {
       line-height: $headerHeight;
-
+      list-style: none;
       &:not(:last-child) {
         margin-right: gap(2);
       }

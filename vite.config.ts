@@ -9,7 +9,7 @@ export default defineConfig(() => {
       vue({
         include: [/\.vue$/, /\.md$/],
       }),
-      markdownParser({}),
+      markdownParser(),
       ssr(),
     ],
   }
