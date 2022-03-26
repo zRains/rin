@@ -16,7 +16,7 @@ export function createApp(pageContext: PageContext) {
     },
     data() {
       return {
-        Page: markRaw(Page),
+        Page: markRaw(Page || {}),
         pageProps: markRaw(pageProps),
       }
     },

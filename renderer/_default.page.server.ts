@@ -1,22 +1,16 @@
 import { createApp } from './App'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
 import { renderToString } from '@vue/server-renderer'
-import avatar from '../public/images/avatar.png'
 import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 
 // See https://vite-plugin-ssr.com/data-fetching
-export const passToClient = ['pageProps']
+export const passToClient = ['documentProps', 'pageProps']
 
 export async function render(pageContext: PageContextBuiltIn & PageContext) {
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
-
-  // See https://vite-plugin-ssr.com/head
-  const { documentProps } = pageContext
-  const title = (documentProps && documentProps.title) || 'zRain'
-  const desc =
-    (documentProps && documentProps.description) ||
-    'App using Vite + vite-plugin-ssr'
+  const title = 'zrain | site'
+  const desc = 'zrain 小屋'
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">

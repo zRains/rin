@@ -3,7 +3,7 @@ import { TransformResult } from 'rollup'
 import YAML from 'yaml'
 
 const parser = async (rawText: string) => {
-  let domComponents: { name: string; path: string }[] = []
+  let documentProps: { [key: string]: any } = Object.create(null)
   const { remark } = await import('remark')
   const stringWidth = await import('string-width')
   const remarkRehype = await import('remark-rehype')
@@ -21,7 +21,7 @@ const parser = async (rawText: string) => {
     .use(remarkFrontmatter.default, ['yaml'])
     .use(() => ({ children }) => {
       if (children[0] && children[0].type === 'yaml') {
-        domComponents = YAML.parse(children[0].value)['injectComponents'] || []
+        documentProps = YAML.parse(children[0].value) || Object.create(null)
       }
     })
     .use(remarkGfm.default, { stringLength: stringWidth.default })
@@ -38,7 +38,7 @@ const parser = async (rawText: string) => {
     .use(rehypeStringify.default, { allowDangerousHtml: true })
     .process(rawText)
 
-  return { domPress: String(file), domComponents }
+  return { domPress: String(file), documentProps }
 }
 
 const parse = async (
@@ -46,16 +46,37 @@ const parse = async (
   filePath: string
 ): Promise<TransformResult> => {
   if (!filePath.endsWith('.md')) return null
-  const { domPress, domComponents } = await parser(rawText)
+  const { domPress, documentProps } = await parser(rawText)
   return `<template>
   <div class="MDContent">${domPress}</div>
   </template>
-  <script lang='ts' setup>
-  ${domComponents.map(c => `import ${c.name} from '${c.path}'\n`).join('')}
-  </script>`
+  <script lang='ts'>
+  import '@style/markdown.scss'
+  import 'highlight.js/scss/github.scss'
+  import { defineComponent } from 'vue'
+  ${
+    documentProps['injectComponents'] &&
+    documentProps['injectComponents']
+      .map(
+        (c: { name: string; path: string }) =>
+          `import ${c.name} from '${c.path}'\n`
+      )
+      .join('')
+  }
+  export default defineComponent({
+    components: {${
+      documentProps['injectComponents'] &&
+      documentProps['injectComponents']
+        .map((c: { name: string; path: string }) => c.name)
+        .join(',')
+    }},
+    documentProps: ${JSON.stringify(documentProps)}
+  })
+  </script>
+  `
 }
 
-export default function (): Plugin {
+export function markdownParser(): Plugin {
   return {
     name: 'siteParser',
     enforce: 'pre',

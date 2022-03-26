@@ -4,11 +4,11 @@ import type { PageContextBuiltInClient } from 'vite-plugin-ssr/client/router'
 import nprogress from 'nprogress'
 
 let AppInstance: ReturnType<typeof createApp> | null = null
-nprogress.configure({
-  showSpinner: false,
-})
 const { hydrationPromise } = useClientRouter({
   render(pageContext: PageContextBuiltInClient & PageContext) {
+    if (!pageContext.isHydration) {
+      document.title = pageContext.Page.documentProps['title'] || 'zrain | site'
+    }
     if (!AppInstance) {
       AppInstance = createApp(pageContext)
       AppInstance.mount('#app')
@@ -22,8 +22,8 @@ const { hydrationPromise } = useClientRouter({
   onTransitionEnd,
 })
 
-hydrationPromise.then(() => {
-  console.log('Hydration finished; page is now interactive.')
+nprogress.configure({
+  showSpinner: false,
 })
 
 function onTransitionStart() {
