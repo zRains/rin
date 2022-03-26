@@ -1,14 +1,13 @@
 import { Plugin } from 'vite'
 import { TransformResult } from 'rollup'
-import YAML from 'yaml'
+import matter from 'gray-matter'
 
 const parser = async (rawText: string) => {
-  let documentProps: { [key: string]: any } = Object.create(null)
   const { remark } = await import('remark')
   const stringWidth = await import('string-width')
   const remarkRehype = await import('remark-rehype')
-  const remarkFrontmatter = await import('remark-frontmatter')
   const remarkParse = await import('remark-parse')
+  const remarkFrontmatter = await import('remark-frontmatter')
   const remarkGfm = await import('remark-gfm')
   const remarkToc = await import('remark-toc')
   const remarkLicense = await import('remark-license')
@@ -18,13 +17,8 @@ const parser = async (rawText: string) => {
   const rehypeHighlight = await import('rehype-highlight')
   const file = await remark()
     .use(remarkParse.default)
-    .use(remarkFrontmatter.default, ['yaml'])
-    .use(() => ({ children }) => {
-      if (children[0] && children[0].type === 'yaml') {
-        documentProps = YAML.parse(children[0].value) || Object.create(null)
-      }
-    })
     .use(remarkGfm.default, { stringLength: stringWidth.default })
+    .use(remarkFrontmatter.default)
     .use(remarkToc.default)
     .use(remarkLicense.default)
     .use(remarkRehype.default, {
@@ -38,7 +32,7 @@ const parser = async (rawText: string) => {
     .use(rehypeStringify.default, { allowDangerousHtml: true })
     .process(rawText)
 
-  return { domPress: String(file), documentProps }
+  return String(file)
 }
 
 const parse = async (
@@ -46,7 +40,8 @@ const parse = async (
   filePath: string
 ): Promise<TransformResult> => {
   if (!filePath.endsWith('.md')) return null
-  const { domPress, documentProps } = await parser(rawText)
+  const { data: documentProps } = matter(rawText)
+  const domPress = await parser(rawText)
   return `<template>
   <div class="MDContent">${domPress}</div>
   </template>
@@ -78,7 +73,7 @@ const parse = async (
 
 export function markdownParser(): Plugin {
   return {
-    name: 'siteParser',
+    name: 'markdownParser',
     enforce: 'pre',
     transform(code, id) {
       return parse(code, id)

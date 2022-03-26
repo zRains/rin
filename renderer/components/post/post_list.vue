@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'PostList',
   setup() {
     const pageContext = inject(pageContextKey)!
-    // console.log(pageContext)
+    console.log(pageContext)
 
     return {}
   },
