@@ -9,6 +9,7 @@ const { hydrationPromise } = useClientRouter({
     if (!pageContext.isHydration) {
       document.title = pageContext.Page.documentProps['title'] || 'zrain | site'
     }
+
     if (!AppInstance) {
       AppInstance = createApp(pageContext)
       AppInstance.mount('#app')

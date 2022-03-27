@@ -17,6 +17,7 @@ import Header from '../components/public/header.vue'
     max-width: $maxContentWidth;
     margin: 0 auto;
     padding: 0 gap();
+    padding-top: gap(2);
   }
 }
 </style>

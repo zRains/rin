@@ -12,6 +12,7 @@ export const passToClient = ['pagesMatter', 'pageProps']
 export async function render(
   pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }
 ) {
+  pageContext.pagesMatter = resolvePagesMatter(pageContext)
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
   const title = 'zrain | site'
@@ -32,12 +33,9 @@ export async function render(
         <div id="app">${dangerouslySkipEscape(appHtml)}</div>
       </body>
     </html>`
-
   return {
     documentHtml,
-    pageContext: {
-      pagesMatter: resolvePagesMatter(pageContext),
-    },
+    pageContext: {},
   }
 }
 
@@ -55,7 +53,7 @@ function resolvePagesMatter(context: { _allPageFiles: any }) {
         {}
       )
       if (data) {
-        pagesMatter.set(pagePath, {
+        pagesMatter.set(pagePath.replace(/pages\/|\.page\.md/g, ''), {
           matter: data,
           ctime: fileStat.ctime,
           mtime: fileStat.mtime,

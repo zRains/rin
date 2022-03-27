@@ -1,20 +1,79 @@
 <template>
-  <div class="postList"></div>
+  <ul class="postList">
+    <li v-for="page in pages" :key="page.path">
+      <a class="post" :href="page.path">
+        <div class="title">{{ page.matter.title || 'Untitle' }}</div>
+        <div class="utils">
+          <div class="ctime">{{ dayjs().from(page.ctime) }}</div>
+          <div class="scope">{{ page.matter.scope.join(' / ') }}</div>
+        </div>
+      </a>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, computed } from 'vue'
 import { pageContextKey } from '../../../utils/constants'
+import { navigate } from 'vite-plugin-ssr/client/router'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import local from 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs'
 
+dayjs.extend(relativeTime)
+dayjs.locale(local)
 export default defineComponent({
   name: 'PostList',
   setup() {
     const pageContext = inject(pageContextKey)!
-    console.log(pageContext)
+    const pages = computed(() =>
+      [...pageContext.pagesMatter.entries()]
+        .map(([path, data]: [string, any]) => ({
+          path,
+          ...data,
+        }))
+        .filter(({ path }) => !path.endsWith('index'))
+    )
 
-    return {}
+    return { pages, navigate, dayjs }
   },
 })
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+@import '../../styles/colors.scss';
+@import '../../styles/var';
+
+.postList {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+  }
+  .post {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    .title {
+      transition-property: color;
+      transition-duration: 0.2s;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .utils {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: $grey5;
+      & > *:not(:last-child) {
+        margin-right: gap(1.5);
+      }
+    }
+    &:hover {
+      .title {
+        color: $primary;
+      }
+    }
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 ---
-title: '链表'
-injectComponents: [{ name: 'Calc', path: '@postComponents/calc.vue' }]
+title: '使用JS操作列表'
+scope: ['JS', 'Algorithm', 'LeetCode']
 ---
 
 ### [力扣-206](https://leetcode-cn.com/problems/reverse-linked-list/)
@@ -107,5 +107,3 @@ var reversePrint = function (head) {
 ### [力扣剑指 offer-35](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
 
 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
-
-<Calc/>

@@ -11,4 +11,5 @@ declare type PageContext = {
     title?: string
     description?: string
   }
+  [key: string]: any
 }
