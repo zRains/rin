@@ -34,6 +34,8 @@ import { headerLinks } from '../../../utils/constants'
       .headerLink {
         line-height: $headerHeight;
         list-style: none;
+        font-size: 1.05em;
+        font-weight: 600;
         &:not(:last-child) {
           margin-right: gap(2);
         }

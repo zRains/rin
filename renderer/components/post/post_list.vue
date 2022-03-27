@@ -5,7 +5,9 @@
         <div class="title">{{ page.matter.title || 'Untitle' }}</div>
         <div class="utils">
           <div class="ctime">{{ dayjs().from(page.ctime) }}</div>
-          <div class="scope">{{ page.matter.scope.join(' / ') }}</div>
+          <div class="scope">
+            {{ page.matter.scope && page.matter.scope.join(' / ') }}
+          </div>
         </div>
       </a>
     </li>
@@ -49,6 +51,9 @@ export default defineComponent({
   padding: 0;
   li {
     list-style: none;
+    &:not(:last-child) {
+      margin-bottom: gap(2);
+    }
   }
   .post {
     display: block;
