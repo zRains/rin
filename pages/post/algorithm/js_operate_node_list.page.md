@@ -1,5 +1,5 @@
 ---
-title: '使用JS操作列表'
+title: '使用JS操作链表'
 scope: ['JS', 'Algorithm', 'LeetCode']
 ---
 
