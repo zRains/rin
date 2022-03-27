@@ -1,10 +1,7 @@
-export function assign<T, K extends { [key: string]: any }>(
-  original: T,
-  props: K
-) {
+export function assign<T, K extends { [key: string]: any }>(original: T, props: K) {
   Object.entries(props).forEach(([key, value]) => {
     Object.defineProperty(original, key, {
-      value,
+      value
     })
   })
   return original as T & K
@@ -16,7 +13,7 @@ export function debounce(fn: Function, time: number) {
     if (task) {
       clearTimeout(task)
     }
-    task = setTimeout(() => fn.apply(null, args), time)
+    task = setTimeout(() => fn(...args), time)
   }
 }
 
@@ -26,7 +23,7 @@ export function throttle(fn: Function, time: number) {
     if (!task) {
       task = setTimeout(() => {
         task = null
-        fn.apply(task, args)
+        fn(...args)
       }, time)
     }
   }

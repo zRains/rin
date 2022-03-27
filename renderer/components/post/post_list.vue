@@ -16,11 +16,11 @@
 
 <script lang="ts">
 import { defineComponent, inject, computed } from 'vue'
-import { pageContextKey } from '../../../utils/constants'
 import { navigate } from 'vite-plugin-ssr/client/router'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import local from 'dayjs/locale/zh-cn'
 import dayjs from 'dayjs'
+import { pageContextKey } from '../../../utils/constants'
 
 dayjs.extend(relativeTime)
 dayjs.locale(local)
@@ -32,13 +32,13 @@ export default defineComponent({
       [...pageContext.pagesMatter.entries()]
         .map(([path, data]: [string, any]) => ({
           path,
-          ...data,
+          ...data
         }))
         .filter(({ path }) => !path.endsWith('index'))
     )
 
     return { pages, navigate, dayjs }
-  },
+  }
 })
 </script>
 

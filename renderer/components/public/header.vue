@@ -2,7 +2,7 @@
   <header class="siteHeader">
     <div class="headerContent">
       <ul class="linkBox">
-        <li class="headerLink" v-for="link in headerLinks" :key="link.path">
+        <li v-for="link in headerLinks" :key="link.path" class="headerLink">
           <a :href="link.path">{{ link.label }}</a>
         </li>
       </ul>

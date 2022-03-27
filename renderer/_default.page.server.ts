@@ -1,18 +1,37 @@
-import { createApp } from './App'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
 import { renderToString } from '@vue/server-renderer'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import type { PageContextBuiltIn } from 'vite-plugin-ssr'
+import createApp from './App'
 
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pagesMatter', 'pageProps']
 
-export async function render(
-  pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }
-) {
-  pageContext.pagesMatter = resolvePagesMatter(pageContext)
+function resolvePagesMatter(context: { _allPageFiles: any }) {
+  const pagesMatter: Map<string, any> = new Map()
+  const pagePath: string[] = context._allPageFiles['.page'].map((p: { filePath: string; loadFile: Function }) => p.filePath)
+
+  pagePath.forEach((pagePath) => {
+    const fileStat = fs.statSync(path.join(path.resolve(), pagePath))
+    if (pagePath.endsWith('.md') && fileStat.isFile()) {
+      const { data = null } = matter(fs.readFileSync(path.join(path.resolve(), pagePath), 'utf-8'), {})
+      if (data) {
+        pagesMatter.set(pagePath.replace(/pages\/|\.page\.md/g, ''), {
+          matter: data,
+          ctime: fileStat.ctime,
+          mtime: fileStat.mtime,
+          size: fileStat.size
+        })
+      }
+    }
+  })
+  return pagesMatter
+}
+
+export async function render(pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }) {
+  Object.defineProperty(pageContext, 'pagesMatter', { value: resolvePagesMatter(pageContext) })
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
   const title = 'zrain | site'
@@ -35,32 +54,6 @@ export async function render(
     </html>`
   return {
     documentHtml,
-    pageContext: {},
+    pageContext: {}
   }
-}
-
-function resolvePagesMatter(context: { _allPageFiles: any }) {
-  const pagesMatter: Map<string, any> = new Map()
-  const pagePath: string[] = context._allPageFiles['.page'].map(
-    (p: { filePath: string; loadFile: Function }) => p.filePath
-  )
-
-  pagePath.forEach(pagePath => {
-    const fileStat = fs.statSync(path.join(path.resolve(), pagePath))
-    if (pagePath.endsWith('.md') && fileStat.isFile()) {
-      const { data = null } = matter(
-        fs.readFileSync(path.join(path.resolve(), pagePath), 'utf-8'),
-        {}
-      )
-      if (data) {
-        pagesMatter.set(pagePath.replace(/pages\/|\.page\.md/g, ''), {
-          matter: data,
-          ctime: fileStat.ctime,
-          mtime: fileStat.mtime,
-          size: fileStat.size,
-        })
-      }
-    }
-  })
-  return pagesMatter
 }

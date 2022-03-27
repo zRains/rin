@@ -7,9 +7,9 @@ import { pageContextKey } from '../utils/constants'
 import './styles/global.scss'
 import './styles/nprogress.scss'
 
-export function createApp(pageContext: PageContext) {
+export default function createApp(pageContext: PageContext) {
   const { Page, pageProps = {} } = pageContext
-  let rootComponent: InstanceType<typeof PageWithWrapper>
+  let rootComponent: any
   const PageWithWrapper = defineComponent({
     setup() {
       provide(pageContextKey, pageContext)
@@ -17,7 +17,7 @@ export function createApp(pageContext: PageContext) {
     data() {
       return {
         Page: markRaw(Page || {}),
-        pageProps: markRaw(pageProps),
+        pageProps: markRaw(pageProps)
       }
     },
     created() {
@@ -28,18 +28,16 @@ export function createApp(pageContext: PageContext) {
         PageShell,
         {},
         {
-          default: () => {
-            return h(this.Page, this.pageProps)
-          },
+          default: () => h(this.Page, this.pageProps)
         }
       )
-    },
+    }
   })
   return assign(createSSRApp(PageWithWrapper), {
     changePage(pageContext: PageContext) {
       const { Page, pageProps = {} } = pageContext
       rootComponent.Page = markRaw(Page)
       rootComponent.pageProps = markRaw(pageProps)
-    },
+    }
   })
 }

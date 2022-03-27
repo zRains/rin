@@ -1,14 +1,25 @@
-import { createApp } from './App'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
 import type { PageContextBuiltInClient } from 'vite-plugin-ssr/client/router'
 import nprogress from 'nprogress'
+import createApp from './App'
 import '../utils/copy'
 
 let AppInstance: ReturnType<typeof createApp> | null = null
-const { hydrationPromise } = useClientRouter({
+nprogress.configure({
+  showSpinner: false
+})
+
+function onTransitionStart() {
+  nprogress.start()
+}
+function onTransitionEnd() {
+  nprogress.done()
+}
+
+useClientRouter({
   render(pageContext: PageContextBuiltInClient & PageContext) {
     if (!pageContext.isHydration) {
-      document.title = pageContext.Page.documentProps['title'] || 'zrain | site'
+      document.title = pageContext.Page.documentProps.title || 'zrain | site'
     }
     if (!AppInstance) {
       AppInstance = createApp(pageContext)
@@ -20,16 +31,5 @@ const { hydrationPromise } = useClientRouter({
   ensureHydration: true,
   prefetchLinks: true,
   onTransitionStart,
-  onTransitionEnd,
+  onTransitionEnd
 })
-
-nprogress.configure({
-  showSpinner: false,
-})
-
-function onTransitionStart() {
-  nprogress.start()
-}
-function onTransitionEnd() {
-  nprogress.done()
-}

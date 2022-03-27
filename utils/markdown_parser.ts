@@ -1,6 +1,6 @@
-import { Plugin } from 'vite'
-import { TransformResult } from 'rollup'
 import matter from 'gray-matter'
+import type { Plugin } from 'vite'
+import type { TransformResult } from 'rollup'
 
 const parser = async (rawText: string) => {
   const { remark } = await import('remark')
@@ -24,7 +24,7 @@ const parser = async (rawText: string) => {
     .use(remarkRehype.default, {
       footnoteLabel: '脚注',
       footnoteBackLabel: '返回内容',
-      allowDangerousHtml: true,
+      allowDangerousHtml: true
     })
     .use(rehypeHighlight.default, { subset: false })
     .use(rehypeSlug.default)
@@ -35,10 +35,7 @@ const parser = async (rawText: string) => {
   return String(file)
 }
 
-const parse = async (
-  rawText: string,
-  filePath: string
-): Promise<TransformResult> => {
+const parse = async (rawText: string, filePath: string): Promise<TransformResult> => {
   if (!filePath.endsWith('.md')) return null
   const { data: documentProps } = matter(rawText)
   const domPress = await parser(rawText)
@@ -50,20 +47,12 @@ const parse = async (
   import 'highlight.js/scss/github.scss'
   import { defineComponent } from 'vue'
   ${
-    documentProps['injectComponents'] &&
-    documentProps['injectComponents']
-      .map(
-        (c: { name: string; path: string }) =>
-          `import ${c.name} from '${c.path}'\n`
-      )
-      .join('')
+    documentProps.injectComponents &&
+    documentProps.injectComponents.map((c: { name: string; path: string }) => `import ${c.name} from '${c.path}'\n`).join('')
   }
   export default defineComponent({
     components: {${
-      documentProps['injectComponents'] &&
-      documentProps['injectComponents']
-        .map((c: { name: string; path: string }) => c.name)
-        .join(',')
+      documentProps.injectComponents && documentProps.injectComponents.map((c: { name: string; path: string }) => c.name).join(',')
     }},
     documentProps: ${JSON.stringify(documentProps)}
   })
@@ -71,12 +60,12 @@ const parse = async (
   `
 }
 
-export function markdownParser(): Plugin {
+export default function markdownParser(): Plugin {
   return {
     name: 'markdownParser',
     enforce: 'pre',
     transform(code, id) {
       return parse(code, id)
-    },
+    }
   }
 }

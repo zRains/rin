@@ -10,5 +10,13 @@
 </template>
 
 <script lang="ts" setup>
-defineProps(['is404'])
+import { defineProps } from 'vue'
+
+defineProps({
+  is404: {
+    type: Boolean,
+    required: false,
+    default: true
+  }
+})
 </script>

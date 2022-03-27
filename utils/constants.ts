@@ -9,12 +9,12 @@ export const headerLinks = [
     path: '/',
     name: 'home',
     label: 'home',
-    disable: false,
+    disable: false
   },
   {
     path: '/post',
     name: 'post',
     label: 'post',
-    disable: false,
+    disable: false
   }
 ]
