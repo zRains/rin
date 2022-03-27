@@ -20,13 +20,13 @@ const parser = async (rawText: string) => {
     .use(remarkGfm.default, { stringLength: stringWidth.default })
     .use(remarkFrontmatter.default)
     .use(remarkToc.default)
-    .use(remarkLicense.default)
+    .use(remarkLicense.default, { heading: /^licen[cs]e:?$|^许可：?$/i })
     .use(remarkRehype.default, {
       footnoteLabel: '脚注',
       footnoteBackLabel: '返回内容',
       allowDangerousHtml: true,
     })
-    .use(rehypeHighlight.default)
+    .use(rehypeHighlight.default, { subset: false })
     .use(rehypeSlug.default)
     .use(rehypeAutolinkHeadings.default, {})
     .use(rehypeStringify.default, { allowDangerousHtml: true })

@@ -103,7 +103,3 @@ var reversePrint = function (head) {
 结果对比：
 
 ![image-20220320133657219](https://cdn.jsdelivr.net/gh/zrains/images/2022/03/image-20220320133657219-987a10ab5393bf4af9fa484bd2f99157.png)
-
-### [力扣剑指 offer-35](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
-
-请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。

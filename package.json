@@ -7,7 +7,7 @@
     "email": "2296342883@qq.com",
     "url": "https://zrain.fun"
   },
-  "license": "MIT",
+  "license": "CC-BY-NC-SA-4.0",
   "scripts": {
     "dev": "npm run server",
     "prod": "npm run build && npm run server:prod",
@@ -16,6 +16,7 @@
     "server:prod": "cross-env NODE_ENV=production ts-node ./server"
   },
   "dependencies": {
+    "clipboard": "^2.0.10",
     "compression": "^1.7.4",
     "dayjs": "^1.11.0",
     "express": "^4.17.3",

@@ -44,7 +44,7 @@ injectComponents: [{ name: 'PostList', path: '@postComponents/post_list.vue' }]
 <a href="https://www.python.org" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="30"/></a>
 <a href="https://www.java.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="30"/></a>
 
-#### 前端框架
+#### 前端框架：
 
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="30"/></a>
 <a href="https://vuejs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg" alt="vuejs" width="40" height="30"/></a>
@@ -62,4 +62,4 @@ injectComponents: [{ name: 'PostList', path: '@postComponents/post_list.vue' }]
 <a href="https://circleci.com" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/circleci/circleci-icon.svg" alt="circleci" width="35" height="35" /></a>
 <a href="https://concourse-ci.org" target="_blank" rel="noreferrer" style="margin-left: 5px"><img src="https://concourse-ci.org/favicon.ico" alt="concourse-ci" width="35" height="35" /></a>
 
-### License
+#### 许可：
