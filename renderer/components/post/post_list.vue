@@ -4,7 +4,7 @@
       <a class="post" :href="page.path">
         <div class="title">{{ page.matter.title || 'Untitle' }}</div>
         <div class="utils">
-          <div class="ctime">{{ dayjs().from(page.ctime) }}</div>
+          <div class="ctime">{{ getRelativeTime(page.ctime) }}</div>
           <div class="scope">
             {{ page.matter.scope && page.matter.scope.join(' / ') }}
           </div>
@@ -16,29 +16,25 @@
 
 <script lang="ts">
 import { defineComponent, inject, computed } from 'vue'
-import { navigate } from 'vite-plugin-ssr/client/router'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import local from 'dayjs/locale/zh-cn'
-import dayjs from 'dayjs'
 import { pageContextKey } from '../../../utils/constants'
+import { getRelativeTime } from '../../../utils/helpers'
 
-dayjs.extend(relativeTime)
-dayjs.locale(local)
 export default defineComponent({
   name: 'PostList',
-  setup() {
+  props: {
+    wrap: {
+      type: String,
+      required: false
+    }
+  },
+  setup(props) {
     const pageContext = inject(pageContextKey)!
     const pages = computed(() =>
-      [...pageContext.Pages.entries()]
-        .map(([path, data]: [string, any]) => ({
-          path,
-          ...data
-        }))
-        .filter(({ matter }) => !matter.index)
+      [...pageContext.Pages.values()]
+        .filter(({ matter }) => (props.wrap ? matter.wrap?.includes(props.wrap) : !matter.index))
         .sort((a, b) => b.ctime - a.ctime)
     )
-
-    return { pages, navigate, dayjs }
+    return { pages, getRelativeTime }
   }
 })
 </script>

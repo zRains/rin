@@ -1,6 +1,6 @@
 ---
 title: 'TC-4: Pick'
-warp: ['TC']
+wrap: ['tc']
 scope: ['Typescript']
 ---
 

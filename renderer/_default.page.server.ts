@@ -10,6 +10,15 @@ import createApp from './App'
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['Pages', 'pageProps']
 
+export function onBeforeRender(pageContext: PageContext) {
+  const { documentProps } = pageContext.Page
+  return {
+    pageContext: {
+      documentProps
+    }
+  }
+}
+
 function resolveMatterString(filePath: string, symbolStr: string = '---'): Promise<string> {
   return new Promise((resolve) => {
     const lineReader = readline.createInterface({
@@ -44,7 +53,9 @@ async function resolvePages(context: { _allPageFiles: any }) {
     if (pagePath[pageIndex].endsWith('.md') && fileStat.isFile()) {
       const { data = null } = matter(await resolveMatterString(path.join(path.resolve(), pagePath[pageIndex])), {})
       if (data) {
-        pages.set(pagePath[pageIndex].replace(/pages\/|\.page\.md/g, ''), {
+        const routePath = pagePath[pageIndex].replace(/pages\/|\.page\.md/g, '')
+        pages.set(routePath, {
+          path: routePath,
           matter: data,
           ctime: fileStat.ctime,
           mtime: fileStat.mtime,
@@ -61,8 +72,8 @@ export async function render(pageContext: PageContextBuiltIn & PageContext & { _
   Object.defineProperty(pageContext, 'Pages', { value: await resolvePages(pageContext) })
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
-  const title = 'zrain | site'
-  const desc = 'zrain 小屋'
+  const title = pageContext.documentProps?.title || 'zrain'
+  const desc = pageContext.documentProps?.desc || 'Dreaming up ideas and making them come true is where my passion lies.'
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
       <head>

@@ -1,6 +1,6 @@
 ---
 title: 'TC-13: Hello World'
-warp: ['TC']
+wrap: ['tc']
 scope: ['Typescript']
 ---
 
