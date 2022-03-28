@@ -61,5 +61,3 @@ index: true
 <a href="https://vuepress.vuejs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/AliasIO/wappalyzer/master/src/drivers/webextension/images/icons/VuePress.svg" alt="vuepress" width="50" height="40"/></a>
 <a href="https://circleci.com" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/circleci/circleci-icon.svg" alt="circleci" width="35" height="35" /></a>
 <a href="https://concourse-ci.org" target="_blank" rel="noreferrer" style="margin-left: 5px"><img src="https://concourse-ci.org/favicon.ico" alt="concourse-ci" width="35" height="35" /></a>
-
-#### 许可：

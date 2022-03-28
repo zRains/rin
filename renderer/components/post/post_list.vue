@@ -24,14 +24,22 @@ export default defineComponent({
   props: {
     wrap: {
       type: String,
-      required: false
+      required: false,
+      default: undefined
+    },
+    showWrap: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup(props) {
     const pageContext = inject(pageContextKey)!
     const pages = computed(() =>
       [...pageContext.Pages.values()]
-        .filter(({ matter }) => (props.wrap ? matter.wrap?.includes(props.wrap) : !matter.index))
+        .filter(({ matter }) =>
+          props.wrap ? matter.wrap?.includes(props.wrap) : props.showWrap ? !matter.index : !matter.index && !matter.wrap
+        )
         .sort((a, b) => b.ctime - a.ctime)
     )
     return { pages, getRelativeTime }
