@@ -22,7 +22,7 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 
 网址：[Leetcode](https://leetcode-cn.com/study-plan/lcof)
 
-通行全球的程序员经典面试秘籍
+通行全球的程序员经典面试秘籍。
 
 <WrapMatter wrap="sword_to_offer"/>
 

@@ -6,6 +6,8 @@ scope: ['Typescript']
 
 Refer: [Easy - Readonly](https://github.com/type-challenges/type-challenges/blob/master/questions/7-easy-readonly/README.md)
 
+Relation: [Medium - Readonly-2](/wrap/tc/8_readonly_2)
+
 ### Describe
 
 Implement the built-in `Readonly<T>` generic without using it.
