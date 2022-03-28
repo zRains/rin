@@ -16,5 +16,11 @@ export const headerLinks = [
     name: 'post',
     label: 'post',
     disable: false
+  },
+  {
+    path: '/wrap',
+    name: 'wrap',
+    label: 'wrap',
+    disable: false
   }
 ]

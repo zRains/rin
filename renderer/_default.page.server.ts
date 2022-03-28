@@ -4,21 +4,47 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import type { PageContextBuiltIn } from 'vite-plugin-ssr'
+import readline from 'readline'
 import createApp from './App'
 
 // See https://vite-plugin-ssr.com/data-fetching
-export const passToClient = ['pagesMatter', 'pageProps']
+export const passToClient = ['Pages', 'pageProps']
 
-function resolvePagesMatter(context: { _allPageFiles: any }) {
-  const pagesMatter: Map<string, any> = new Map()
+function resolveMatterString(filePath: string, symbolStr: string = '---'): Promise<string> {
+  return new Promise((resolve) => {
+    const lineReader = readline.createInterface({
+      input: fs.createReadStream(filePath)
+    })
+    let firstLine = true
+    const wantedLines: string[] = []
+    lineReader.on('line', (line) => {
+      const currentLine = line.trim()
+      if (firstLine && currentLine !== symbolStr) {
+        lineReader.close()
+      } else {
+        wantedLines.push(currentLine)
+        if (!firstLine && currentLine === symbolStr) {
+          lineReader.close()
+        }
+        firstLine = false
+      }
+    })
+    lineReader.on('close', () => {
+      resolve(wantedLines[0] === symbolStr && wantedLines[wantedLines.length - 1] === symbolStr ? wantedLines.join('\n') : '')
+    })
+  })
+}
+
+async function resolvePages(context: { _allPageFiles: any }) {
+  const pages: Map<string, any> = new Map()
   const pagePath: string[] = context._allPageFiles['.page'].map((p: { filePath: string; loadFile: Function }) => p.filePath)
-
-  pagePath.forEach((pagePath) => {
-    const fileStat = fs.statSync(path.join(path.resolve(), pagePath))
-    if (pagePath.endsWith('.md') && fileStat.isFile()) {
-      const { data = null } = matter(fs.readFileSync(path.join(path.resolve(), pagePath), 'utf-8'), {})
+  /* eslint-disable no-await-in-loop */
+  for (let pageIndex = 0; pageIndex < pagePath.length; pageIndex += 1) {
+    const fileStat = fs.statSync(path.join(path.resolve(), pagePath[pageIndex]), {})
+    if (pagePath[pageIndex].endsWith('.md') && fileStat.isFile()) {
+      const { data = null } = matter(await resolveMatterString(path.join(path.resolve(), pagePath[pageIndex])), {})
       if (data) {
-        pagesMatter.set(pagePath.replace(/pages\/|\.page\.md/g, ''), {
+        pages.set(pagePath[pageIndex].replace(/pages\/|\.page\.md/g, ''), {
           matter: data,
           ctime: fileStat.ctime,
           mtime: fileStat.mtime,
@@ -26,12 +52,13 @@ function resolvePagesMatter(context: { _allPageFiles: any }) {
         })
       }
     }
-  })
-  return pagesMatter
+  }
+  /* eslint-enable no-await-in-loop */
+  return pages
 }
 
 export async function render(pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }) {
-  Object.defineProperty(pageContext, 'pagesMatter', { value: resolvePagesMatter(pageContext) })
+  Object.defineProperty(pageContext, 'Pages', { value: await resolvePages(pageContext) })
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
   const title = 'zrain | site'

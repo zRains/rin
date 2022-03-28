@@ -29,12 +29,13 @@ export default defineComponent({
   setup() {
     const pageContext = inject(pageContextKey)!
     const pages = computed(() =>
-      [...pageContext.pagesMatter.entries()]
+      [...pageContext.Pages.entries()]
         .map(([path, data]: [string, any]) => ({
           path,
           ...data
         }))
-        .filter(({ path }) => !path.endsWith('index'))
+        .filter(({ matter }) => !matter.index)
+        .sort((a, b) => b.ctime - a.ctime)
     )
 
     return { pages, navigate, dayjs }

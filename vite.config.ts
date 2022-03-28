@@ -14,7 +14,7 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: {
-      '@postComponents': resolve(__dirname, 'renderer/components/post'),
+      '@components': resolve(__dirname, 'renderer/components'),
       '@style': resolve(__dirname, 'renderer/styles')
     }
   }
