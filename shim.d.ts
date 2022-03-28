@@ -10,7 +10,7 @@ declare type PageContext = {
   pageProps?: PageProps
   documentProps?: {
     title?: string
-    description?: string
+    desc?: string
   }
   [key: string]: any
 }
