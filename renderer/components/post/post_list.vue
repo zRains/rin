@@ -65,6 +65,7 @@ export default defineComponent({
     text-decoration: none;
     color: inherit;
     .title {
+      display: inline-block;
       transition-property: color;
       transition-duration: 0.2s;
       font-weight: 600;
