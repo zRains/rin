@@ -6,7 +6,7 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 
 # 系列
 
-大部分来自挑战、刷题系列。偶尔凑凑热闹 👀
+> 大部分来自挑战、刷题系列。偶尔凑凑热闹 👀
 
 ## [type-challenges](/wrap/tc)
 

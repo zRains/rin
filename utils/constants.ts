@@ -22,5 +22,11 @@ export const headerLinks = [
     name: 'wrap',
     label: 'wrap',
     disable: false
+  },
+  {
+    path: '/note',
+    name: 'note',
+    label: 'note',
+    disable: false
   }
 ]
