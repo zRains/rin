@@ -1,6 +1,7 @@
 <template>
   <header class="siteHeader">
     <div class="headerContent">
+      <a href="/" class="avatar"></a>
       <ul class="linkBox">
         <li v-for="link in headerLinks" :key="link.path" class="headerLink">
           <a :href="link.path">{{ link.label }}</a>
@@ -25,6 +26,13 @@ import { headerLinks } from '../../../utils/constants'
     max-width: $maxContentWidth * 1.2;
     margin: 0 auto;
     display: flex;
+    .avatar {
+      height: $headerHeight * 0.7;
+      width: $headerHeight * 0.7;
+      background-image: url('/images/avatar.png');
+      background-size: cover;
+      margin: auto 0;
+    }
     .linkBox {
       user-select: none;
       margin-left: auto;

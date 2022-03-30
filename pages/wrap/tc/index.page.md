@@ -8,4 +8,6 @@ injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
   <img src='https://github.com/type-challenges/type-challenges/raw/master/screenshots/logo.svg' width='400' />
 </div>
 
+<SiteBack/>
+
 <PostList wrap='tc'/>

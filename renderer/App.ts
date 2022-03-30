@@ -7,6 +7,9 @@ import { pageContextKey } from '../utils/constants'
 import './styles/global.scss'
 import './styles/nprogress.scss'
 
+// Global Components
+import SiteBack from './components/global/site_back.vue'
+
 export default function createApp(pageContext: PageContext) {
   const { Page, pageProps = {} } = pageContext
   let rootComponent: any
@@ -33,7 +36,9 @@ export default function createApp(pageContext: PageContext) {
       )
     }
   })
-  return assign(createSSRApp(PageWithWrapper), {
+  const App = createSSRApp(PageWithWrapper)
+  App.component('SiteBack', SiteBack)
+  return assign(App, {
     changePage(pageContext: PageContext) {
       const { Page, pageProps = {} } = pageContext
       rootComponent.Page = markRaw(Page)

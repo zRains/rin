@@ -8,4 +8,6 @@ injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
   <h1>剑指 Offer</h1>
 </p>
 
+<SiteBack/>
+
 <PostList wrap='sword_to_offer'/>
