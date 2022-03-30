@@ -4,9 +4,9 @@ index: true
 injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
 ---
 
-<p align='center'>
-  <h1>剑指 Offer</h1>
-</p>
+<div align='center' style="height: 80px;margin-bottom: 20px">
+  <img src='https://upload.wikimedia.org/wikipedia/commons/0/0a/LeetCode_Logo_black_with_text.svg' width='400' height="80" />
+</div>
 
 <SiteBack/>
 
