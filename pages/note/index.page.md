@@ -7,6 +7,30 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### `<string.h>` & `<strings.h>`
+
+we don't need and should not read this file if `<string.h>` was already read. The one exception being that if \_USE_MISC isn't defined, then these aren't defined in string.h, so we need to define then here.
+
+```cpp
+#ifdef __USE_MISC
+#include <strings.h>
+```
+
+[stckoverflow](https://stackoverflow.com/a/4291328/14792586): strings.h comes from the BSD branch in the unix evolution. Its content has been standardized by POSIX, but most of it is marked as legacy and can be easily replaced with other functions:
+
+```cpp
+int    bcmp(const void *, const void *, size_t); /* LEGACY, see memcmp */
+void   bcopy(const void *, void *, size_t); /* LEGACY, see memcpy, memmove */
+void   bzero(void *, size_t); /* LEGACY, see memset */
+int    ffs(int);
+char  *index(const char *, int); /* LEGACY, see strchr */
+char  *rindex(const char *, int); /* LEGACY, see strrchr */
+int    strcasecmp(const char *, const char *);
+int    strncasecmp(const char *, const char *, size_t);
+```
+
+---
+
 ### 实现最简单的防抖和节流
 
 参考于掘金（具体网址忘了），修复了其中一个 BUG。
