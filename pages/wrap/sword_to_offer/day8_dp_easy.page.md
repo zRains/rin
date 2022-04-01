@@ -20,3 +20,22 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
 
 #### 解答
+
+70 次左右已经超过 JS 数值类型的安全范围了，需要提前对每个计算进行模运算（Python 好像不需要，数值大小取决于运行内存）：
+
+```javascript
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function (n) {
+  const result = [0, 1]
+  if (n <= 1) return result[n]
+  for (let i = 0; i < n - 1; i++) {
+    let temp = result[0]
+    result[0] = result[1]
+    result[1] = (temp + result[1]) % 1000000007
+  }
+  return result[1]
+}
+```
