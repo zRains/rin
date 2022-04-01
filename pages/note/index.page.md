@@ -7,6 +7,28 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### 一些有用的 Linux 命令
+
+防止别人 ping 你的服务器
+
+```bash
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+```
+
+查看端口
+
+```bash
+ps aux
+```
+
+查看所有进程
+
+```bash
+netstat -tlunp
+```
+
+---
+
 ### iframe 标签特性
 
 - iframe 的创建比其它包括 scripts 和 css 的 DOM 元素的创建慢了 1-2 个数量级，使用 iframe 的页面一般不会包含太多 iframe，所以创建 DOM 节点所花费的时间不会占很大的比重。但带来一些其它的问题：onload 事件以及连接池（connection pool）
