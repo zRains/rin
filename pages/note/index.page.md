@@ -7,7 +7,7 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
-容易忘记的`Math.random()`
+### 容易忘记的`Math.random()`
 
 Math.random()方法返回大于等于 0 小于 1 的一个随机数。
 
