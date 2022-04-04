@@ -10,7 +10,6 @@ const parser = async (rawText: string) => {
   const remarkFrontmatter = await import('remark-frontmatter')
   const remarkGfm = await import('remark-gfm')
   const remarkToc = await import('remark-toc')
-  const remarkLicense = await import('remark-license')
   const rehypeStringify = await import('rehype-stringify')
   const rehypeSlug = await import('rehype-slug')
   const rehypeAutolinkHeadings = await import('rehype-autolink-headings')
@@ -20,7 +19,6 @@ const parser = async (rawText: string) => {
     .use(remarkGfm.default, { stringLength: stringWidth.default })
     .use(remarkFrontmatter.default)
     .use(remarkToc.default)
-    .use(remarkLicense.default, { heading: /^licen[cs]e:?$|^许可：?$/i })
     .use(remarkRehype.default, {
       footnoteLabel: '脚注',
       footnoteBackLabel: '返回内容',

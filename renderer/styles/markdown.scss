@@ -10,6 +10,10 @@
 
   a {
     color: $primary;
+    &.iconLink {
+      display: inline-block;
+      color: unset;
+    }
     &:hover {
       text-decoration: underline;
     }

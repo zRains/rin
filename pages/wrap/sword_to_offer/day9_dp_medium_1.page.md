@@ -1,5 +1,5 @@
 ---
-title: '第9天 - 动态规划（中等）'
+title: '第9天 - 动态规划1（中等）'
 wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode', 'DP']
 ---

@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "@iconify/vue": "^3.2.1",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/server-renderer": "^3.2.31",
     "clipboard": "^2.0.10",
@@ -45,7 +46,6 @@
     "remark": "^14.0.2",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
-    "remark-license": "^6.1.0",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "remark-toc": "^8.0.1",

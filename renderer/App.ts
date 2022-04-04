@@ -1,4 +1,5 @@
 import { createSSRApp, defineComponent, h, markRaw, provide } from 'vue'
+import { Icon } from '@iconify/vue'
 import { assign } from '../utils/helpers'
 import PageShell from './PageShell.vue'
 import { pageContextKey } from '../utils/constants'
@@ -37,7 +38,9 @@ export default function createApp(pageContext: PageContext) {
     }
   })
   const App = createSSRApp(PageWithWrapper)
+  // Register Global Components
   App.component('SiteBack', SiteBack)
+  App.component('Icon', Icon)
   return assign(App, {
     changePage(pageContext: PageContext) {
       const { Page, pageProps = {} } = pageContext
