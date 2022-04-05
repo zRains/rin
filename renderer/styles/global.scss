@@ -13,3 +13,7 @@ a {
   color: $grey1;
   text-decoration: none;
 }
+
+.no-select {
+  user-select: none;
+}

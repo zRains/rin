@@ -1,13 +1,13 @@
 ---
-title: 'Type Challenges'
+title: 'Vue3 解析集'
 index: true
 injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
 ---
 
 <div class="no-select"  style="display: flex;justify-content:center;align-items:center;height: 80px;margin-bottom: 20px">
-  <img src='https://github.com/type-challenges/type-challenges/raw/master/screenshots/logo.svg' width='400' />
+  <Icon icon="vscode-icons:file-type-vue" height="80"/><span style="font-size:2rem;font-weight:800">Vue.js</span>
 </div>
 
 <SiteBack/>
 
-<PostList wrap='tc'/>
+<PostList wrap='source_of_vue3'/>
