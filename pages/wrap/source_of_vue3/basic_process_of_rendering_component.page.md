@@ -4,9 +4,9 @@ wrap: ['source_of_vue3']
 scope: ['Vue3', 'source']
 ---
 
-大致总结一下一个组件在 vue3 驱动下如何渲染到页面，肯定省略了不少，以后再慢慢补充吧。
-
 <img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>
+
+大致总结一下一个组件在 vue3 驱动下如何渲染到页面，肯定省略了不少，以后再慢慢补充吧。
 
 ## 出发
 
@@ -23,7 +23,7 @@ createApp(App).mount(document.querySelector('#app'))
 
 让我们看看`createApp`都做了什么：
 
-```javascript
+```typescript
 // mini-vue: runtime-dom/index.ts
 let renderer
 
@@ -43,7 +43,10 @@ export const createApp = (...args) => {
 
 从上面代码可以看出`createApp`帮我们创建了一个渲染器，并使用渲染器里的`createApp`加载组件，也就是上面的`App`。而`ensureRenderer`顾名思义就是确定只有一个渲染器，这就使得我们创建多个组件（包括通过`createApp`）使用的都是**同一个**渲染器。让我们看看`createRenderer({...})`做了什么：
 
-```javascript
+<details>
+<summary>展开 mini-vue 中的 createRenderer 代码</summary>
+
+```typescript
 // mini-vue: runtime-core/renderer.ts
 export function createRenderer(options) {
   // 渲染器对dom的操作
@@ -94,11 +97,89 @@ export function createRenderer(options) {
 }
 ```
 
+</details>
+
 很明显`options`是对元素的操作函数，比如创建 dom，设置 dom 的内容，对 dom 的增删等。其实 vue 里面不止这么点对 dom 的操作，vue 是单独封装在`runtime-core/src/nodeOpts.ts`里面，包括获取父节点，克隆节点，挂载静态内容等。
 
 ### `patch` - 一个小型的适配器模式
 
-`patch`，补丁，修补的意思。而它主要的作用是对不同类型的组件进行不同的处理，因为最后的最后都要当作`element`类型挂载到 dom 里。这里我们可以看一下有哪些类型，也就是上面的 shapeFlag 枚举：
+patch，补丁，修补的意思。而它主要的作用是对不同类型的组件进行不同的处理，因为最后的最后都要当作`ShapeFlags.ELEMENT`类型挂载到 dom 里。
+
+```typescript
+// mini-vue: runtime-core/renderer.ts
+function patch(n1, n2, container = null, anchor = null, parentComponent = null) {
+  // 基于 n2 的类型来判断
+  // 因为 n2 是新的 vnode
+  const { type, shapeFlag } = n2
+  switch (type) {
+    case Text:
+      processText(n1, n2, container)
+      break
+    // 其中还有几个类型比如： static fragment comment
+    case Fragment:
+      processFragment(n1, n2, container)
+      break
+    default:
+      // 这里就基于 shapeFlag 来处理
+      if (shapeFlag & ShapeFlags.ELEMENT) {
+        console.log('处理 element')
+        processElement(n1, n2, container, anchor, parentComponent)
+      } else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
+        console.log('处理 component')
+        processComponent(n1, n2, container, parentComponent)
+      }
+  }
+}
+```
+
+首先看到`Text`和`Fragment`类型，由上面的注释可知，最先并不是按照`shapeFlag`来处理的，其实还有 vue 根据子节点设置的组件，他们的`type`是一个独一无二的的**Symbol**：
+
+```typescript
+// vue-core: runtime-core/src/vnode.ts
+export const Fragment = Symbol(__DEV__ ? 'Fragment' : undefined) as any as {
+  __isFragment: true
+  new (): {
+    $props: VNodeProps
+  }
+}
+export const Text = Symbol(__DEV__ ? 'Text' : undefined)
+export const Comment = Symbol(__DEV__ ? 'Comment' : undefined)
+export const Static = Symbol(__DEV__ ? 'Static' : undefined)
+```
+
+具体运用代码如下：
+
+<details>
+<summary>展开 vue-core 中的 normalizeVNode 代码</summary>
+
+```typescript
+// vue-core: runtime-core/src/vnode.ts
+export function normalizeVNode(child: VNodeChild): VNode {
+  if (child == null || typeof child === 'boolean') {
+    // empty placeholder
+    return createVNode(Comment)
+  } else if (isArray(child)) {
+    // fragment
+    return createVNode(
+      Fragment,
+      null,
+      // #3666, avoid reference pollution when reusing vnode
+      child.slice()
+    )
+  } else if (typeof child === 'object') {
+    // already vnode, this should be the most common since compiled templates
+    // always produce all-vnode children arrays
+    return cloneIfMounted(child)
+  } else {
+    // strings and numbers
+    return createVNode(Text, null, String(child))
+  }
+}
+```
+
+</details>
+
+这里我们可以看一下有哪些类型，也就是上面的 shapeFlag 枚举：
 
 ```typescript
 // vue-core: shared/src/shapeFlags.ts
@@ -148,6 +229,210 @@ function processComponent(n1, n2, container, parentComponent) {
 
 ### `mountComponent` - 组件实例被创建
 
+直接上代码：
+
+```typescript
+// mini-vue: runtime-core/renderer.ts
+function mountComponent(initialVNode, container, parentComponent) {
+  const instance = (initialVNode.component = createComponentInstance(initialVNode, parentComponent))
+  setupComponent(instance)
+  setupRenderEffect(instance, initialVNode, container)
+}
+```
+
+逻辑同样简单，创建`instance`后挂载到 vnode 的`component`属性上，之后交给`setupComponent`（处理 props，slots，编译 template，挂载 render 渲染函数等），`setupRenderEffect`处理响应式。vue-core 在这一段含有大量开发环境的处理
+
+### `createComponentInstance` - 顾名思义
+
+这个函数将创建一个组件的实例，包含大量信息（vnode 可以说也是组件的一个实例，但包含的信息太少了，这里的 instance 可以很方便处理组件内部的信息，比如响应式，props，slots 等）：
+
+<details>
+<summary>展开 mini-vue 中的 createComponentInstance 代码</summary>
+
+```typescript
+// mini-vue: runtime-core/components.ts
+export function createComponentInstance(vnode, parent) {
+  const instance = {
+    type: vnode.type,
+    vnode,
+    next: null, // 需要更新的 vnode，用于更新 component 类型的组件
+    props: {},
+    parent,
+    provides: parent ? parent.provides : {}, //  获取 parent 的 provides 作为当前组件的初始化值 这样就可以继承 parent.provides 的属性了
+    proxy: null,
+    isMounted: false,
+    attrs: {}, // 存放 attrs 的数据
+    slots: {}, // 存放插槽的数据
+    ctx: {}, // context 对象
+    setupState: {}, // 存储 setup 的返回值
+    emit: () => {}
+  }
+
+  // 在 prod 坏境下的 ctx 只是下面简单的结构
+  // 在 dev 环境下会更复杂
+  instance.ctx = {
+    _: instance
+  }
+
+  // 赋值 emit
+  // 这里使用 bind 把 instance 进行绑定
+  // 后面用户使用的时候只需要给 event 和参数即可
+  instance.emit = emit.bind(null, instance) as any
+
+  return instance
+}
+```
+
+</details>
+
+在 dev 坏境下的 ctx 还包含了下面这些属性，在 prod 环境下是无法使用的：
+
+<details>
+<summary>展开 vue-core 中的 publicPropertiesMap 定义</summary>
+
+```typescript
+// vue-core: runtime-core/src/componentPublicInstance.ts
+export const publicPropertiesMap: PublicPropertiesMap = /*#__PURE__*/ extend(Object.create(null), {
+  $: (i) => i,
+  $el: (i) => i.vnode.el,
+  $data: (i) => i.data,
+  $props: (i) => (__DEV__ ? shallowReadonly(i.props) : i.props),
+  $attrs: (i) => (__DEV__ ? shallowReadonly(i.attrs) : i.attrs),
+  $slots: (i) => (__DEV__ ? shallowReadonly(i.slots) : i.slots),
+  $refs: (i) => (__DEV__ ? shallowReadonly(i.refs) : i.refs),
+  $parent: (i) => getPublicInstance(i.parent),
+  $root: (i) => getPublicInstance(i.root),
+  $emit: (i) => i.emit,
+  $options: (i) => (__FEATURE_OPTIONS_API__ ? resolveMergedOptions(i) : i.type),
+  $forceUpdate: (i) => () => queueJob(i.update),
+  $nextTick: (i) => nextTick.bind(i.proxy!),
+  $watch: (i) => (__FEATURE_OPTIONS_API__ ? instanceWatch.bind(i) : NOOP)
+} as PublicPropertiesMap)
+```
+
+</details>
+
+可能上面的`instance`并不能感受到**大量**的属性，在 vue-core 里足足有**56**个属性。
+
+![createComponentInstance](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/createComponentInstance-311fe19abdbd436a0280782c899e14b2.png)
+
+我发现至今有两个地方出现了 uid 标识，一个是在[createAppAPI](#createappapi---将创造能力给我们)，一个就是在这里。两个 uid 的初始声名在不同文件里：
+
+```typescript
+// vue-core: runtime-core/src/apiCreateApp.ts
+let uid = 0 // 157行
+
+// vue-core: runtime-core/src/components.ts
+let uid = 0 // 447行
+```
+
+这也可以得出一个结论：虽然可以多次调用`createApp(...)`但创建出来的 app 都是有不同标识的，并且所有 components 的 uid 都各不相同。但一些 app 和 component 允许存在相同 uid 的情况。
+
+### `setupComponent` - instance 加工厂
+
+直接看代码：
+
+```typescript
+// mini-vue: runtime-core/components.ts
+export function setupComponent(instance) {
+  // 1. 处理 props
+  // 取出存在 vnode 里面的 props
+  const { props, children } = instance.vnode
+  initProps(instance, props)
+  // 2. 处理 slots
+  initSlots(instance, children)
+  // 源码里面有两种类型的 component，一种是基于 options 创建的，还有一种是 function 的
+  // setupComponent函数处理的是 options 创建的组件
+  setupStatefulComponent(instance)
+}
+```
+
+这里的逻辑和 vue-core 一样的简短，我们可以清楚的看到`setupComponent`处理了`props`和`slots`，盲猜是设置只读让后挂载到`instance`。🤪
+
+> 注意到这个函数似乎只处理`STATEFUL_COMPONENT`类型的组件。从后续分析来看`FUNCTIONAL_COMPONENT`是在 componentFunctional.ts 下面完成的。函数组件要之后分析了。
+
+让我们看看`initProps`做了什么，因为 mini-vue 这部分代码太简略了（只有一行），所以截取了 vue-core 里面的，已删除部分开发环境代码：
+
+<details>
+<summary>展开 vue-core 中的 initProps 代码</summary>
+
+```typescript
+// vue-core: runtime-core/src/componentProps.ts
+export function initProps(
+  instance: ComponentInternalInstance,
+  rawProps: Data | null,
+  isStateful: number, // result of bitwise flag comparison
+  isSSR = false
+) {
+  const props: Data = {}
+  const attrs: Data = {}
+
+  // 确保所有声明的属性都存在，如果props里面没有，就先加上，直接给上undefined
+  for (const key in instance.propsOptions[0]) {
+    if (!(key in props)) {
+      props[key] = undefined
+    }
+  }
+
+  if (isStateful) {
+    // 处理STATEFUL_COMPONENT类型的组件
+    instance.props = isSSR ? props : shallowReactive(props)
+  } else {
+    // 处理FUNCTIONAL_COMPONENT类型的组件
+    if (!instance.type.props) {
+      instance.props = attrs
+    } else {
+      instance.props = props
+    }
+  }
+  instance.attrs = attrs
+}
+```
+
+</details>
+
+逻辑也很简单，这里需要提一下处理`FUNCTIONAL_COMPONENT`类型的组件，为什么 props 一会儿是`attrs`一会儿是`props`。在[**官方文档**](https://vuejs.org/guide/extras/render-function.html#functional-components)是这样解释的：
+
+> 如果这个 props 选项没有被定义，那么被传入函数的 props 对象就会像 attrs 一样会包含所有 attribute。除非指定了 props 选项，否则每个 prop 的名字将不会基于驼峰命名法被一般化处理。
+
+就这样，`props`被挂载到`instance`上了。
+
+接下来让我们看看`initSlots`又做了什么：
+
+<details>
+<summary>展开 mini-vue 中的 initSlots 代码</summary>
+
+```typescript
+// mini-vue: runtime-core/componentSlots.ts
+export function initSlots(instance, children) {
+  const { vnode } = instance
+  if (vnode.shapeFlag & ShapeFlags.SLOTS_CHILDREN) {
+    // 初始化 slots，这instance.slots = {}传参的写法不得让我看半天。。。
+    normalizeObjectSlots(children, (instance.slots = {}))
+  }
+}
+
+const normalizeSlotValue = (value) => {
+  // 把 function 返回的值转换成 array ，这样 slot 就可以支持多个元素了
+  return Array.isArray(value) ? value : [value]
+}
+
+const normalizeObjectSlots = (rawSlots, slots) => {
+  for (const key in rawSlots) {
+    const value = rawSlots[key]
+    if (typeof value === 'function') {
+      // 把这个函数给到slots 对象上存起来
+      // 后续在 renderSlots 中调用
+      // TODO 这里没有对 value 做 normalize，
+      // 默认 slots 返回的就是一个 vnode 对象
+      slots[key] = (props) => normalizeSlotValue(value(props))
+    }
+  }
+}
+```
+
+</details>
+
 ### `setupRenderEffect` - 响应式的开始
 
 这里不得不提一个函数：`setupRenderEffect`。令人胆寒，这个就是组件内部响应式初始化开始的入口：
@@ -176,6 +461,9 @@ export function createAppAPI(render) {
 ```
 
 `createAppAPI`返回了`createApp`方法，里面返回创建的 app 实例，包含`mount`和`_component`。而`mount`触发`render`渲染器，组件开始处理并挂载到页面上。实际上还有很多属性`mini-vue`没有添加上去：
+
+<details>
+<summary>展开 vue-core 中的 App 属性定义</summary>
 
 ```typescript
 // vue-core: runtime-core/src/apiCreateApp.ts
@@ -218,6 +506,8 @@ const app: App = (context.app = {
   provide(key, value) {}
 })
 ```
+
+</details>
 
 是不是在上面看到很多熟悉的方法。
 
@@ -363,6 +653,4 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
 
 <img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" style="zoom:40%;" />
 
-### 登场
-
-其实在
+### 未完成，待更新
