@@ -6,9 +6,9 @@ scope: ['Vue3', 'source']
 
 <img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>
 
-大致总结一下一个组件在 vue3 驱动下如何渲染到页面，肯定省略了不少，以后再慢慢补充吧。
+### 目录
 
-## 出发
+大致总结一下一个组件在 vue3 驱动下如何渲染到页面，肯定省略了不少，以后再慢慢补充吧。
 
 ### `createApp` - 一切的开始
 
@@ -433,9 +433,114 @@ const normalizeObjectSlots = (rawSlots, slots) => {
 
 </details>
 
+> 这部分代码和 vue-core 大同小异，后者多了一些边缘处理情况，如使用了不合适的 slot 名称，处理非函数的 slots 等。
+
+可以看出当 vnode 的子节点为 Object，也就表明为 slots 配置。从`typeof value === 'function'`可以知道每个 slot 的值必须是一个**函数**，通过检验后把每个 slot 的值包装为一个**函数数组**，以此来达到支持多个兄弟元素（也就是 shapeFlag.ARRAY_CHILDREN 类型）。在[**创建 Vnodes**](https://staging-cn.vuejs.org/guide/extras/render-function.html#creating-vnodes)这里可以清楚的了解到为什么要怎么做。
+
+### `setupStatefulComponent` - 调用 setup
+
+接下来就是处理组件内部`setup`函数的时候了，主要集中在`setupStatefulComponent`函数内。
+
+> 📢 正如上面所说：setupStatefulComponent 只处理 STATEFUL_COMPONENT 类型的组件！
+
+<details>
+<summary>展开 mini-vue 中的 setupStatefulComponent 相关代码</summary>
+
+```typescript
+function setupStatefulComponent(instance) {
+  // 1. 先创建代理 proxy
+  // proxy 对象其实是代理了 instance.ctx 对象
+  // 我们在使用的时候需要使用 instance.proxy 对象
+  // 因为 instance.ctx 在 prod 和 dev 坏境下是不同的
+  instance.proxy = new Proxy(instance.ctx, PublicInstanceProxyHandlers)
+  // 用户声明的对象就是 instance.type
+  // const Component = {setup(),render()} ....
+  const Component = instance.type
+  // 2. 调用 setup
+
+  // 调用 setup 的时候传入 props
+  const { setup } = Component
+  if (setup) {
+    // 设置当前 currentInstance 的值
+    // 必须要在调用 setup 之前
+    setCurrentInstance(instance)
+    const setupContext = createSetupContext(instance)
+    // 真实的处理场景里面应该是只在 dev 环境才会把 props 设置为只读的
+    const setupResult = setup && setup(shallowReadonly(instance.props), setupContext)
+    setCurrentInstance(null)
+    // 3. 处理 setupResult
+    handleSetupResult(instance, setupResult)
+  } else {
+    finishComponentSetup(instance)
+  }
+}
+
+function createSetupContext(instance) {
+  console.log('初始化 setup context')
+  return {
+    attrs: instance.attrs,
+    slots: instance.slots,
+    emit: instance.emit,
+    expose: () => {}
+  }
+}
+```
+
+</details>
+
+创建 context 的代理对象并挂载到`proxy`上，之后创建 setup 函数的上下文（也就是我们时常都在用的 setup(props, ctx){...}），设置`currentInstance`最后调用 setup，注意到：
+
+```typescript
+// mini-vue: runtime-core/components.ts
+setCurrentInstance(instance)
+const setupContext = createSetupContext(instance)
+const setupResult = setup && setup(shallowReadonly(instance.props), setupContext)
+// setup调用完成，立即清除当前组件实例instance
+setCurrentInstance(null)
+```
+
+上面这段代码提醒我们只能在 setup 函数中调用，至少[**文档里**](https://v3.cn.vuejs.org/api/composition-api.html#getcurrentinstance)是这么说的：
+
+> getCurrentInstance 只能在 setup 或生命周期钩子中调用。
+
+后面的`handleSetupResult`则是对 setup 函数返回值进行处理，如果为函数类型，则当作`render`函数处理（注意，后面要考 😆），如果是普通对象，则代理这个对象。这里说一下代理的作用：
+
+先来看一下 Proxy 的 handle：
+
+```typescript
+// vue-core: reactivity/src/refs.ts
+const shallowUnwrapHandlers: ProxyHandler<any> = {
+  get: (target, key, receiver) => unref(Reflect.get(target, key, receiver)),
+  set: (target, key, value, receiver) => {
+    const oldValue = target[key]
+    if (isRef(oldValue) && !isRef(value)) {
+      oldValue.value = value
+      return true
+    } else {
+      return Reflect.set(target, key, value, receiver)
+    }
+  }
+}
+```
+
+我们可以看到，当 set 被触发时，实际是运用到代理对象的`value`上，而 get 方法中的`unref`源码如下：
+
+```typescript
+// vue-core: reactivity/src/refs.ts
+export function unref<T>(ref: T | Ref<T>): T {
+  return isRef(ref) ? (ref.value as any) : ref
+}
+```
+
+会帮我们自动解包`value`，于是可以马上猜到，这个是用于模板（template）里的变量，因此模板里设置响应式数据时不用带上`.value`了。
+
+### `finishComponentSetup` - 渲染处理
+
+这个函数主要对 instance 如何渲染做处理，之前在 setup 函数中提到过：如果 setup 函数返回一个函数，则作为 instance 的渲染函数。否则就那`instance.type.template`为模板，通过`compile`将其编译为渲染函数并挂载到`instance.render`上。由此可见 setup 函数定义的渲染要比 template 字段定义的优先级高（毕竟后者还要编译一遍，性能上肯定处于劣势）。
+
 ### `setupRenderEffect` - 响应式的开始
 
-这里不得不提一个函数：`setupRenderEffect`。令人胆寒，这个就是组件内部响应式初始化开始的入口：
+响应式可谓是重中之重，因此单独开篇。 🤗
 
 ### `createAppAPI` - 将创造能力给我们
 
@@ -593,7 +698,7 @@ const shapeFlag = isString(type)
 
 `createVNode`还有这样一个函数：`normalizeChildren`。这个函数主要判断组件的子组件类型，并改变组件的 shapeFlag。
 
-根据`getShapeFlag`（vue 源码里是没有这个函数的，这只是个简单实现，代替上面 shapeFlag 的疯狂判断），当`children`的类型为对象时，如果对象被定义为`ShapeFlags.ELEMENT`，那么它的子组件必不可能为`slot`类型，否则将 shapeFlag 添加上`ShapeFlags.SLOTS_CHILDREN`的比特位。
+根据`getShapeFlag`（vue 源码里是没有这个函数的，这只是个简单实现，代替上面 shapeFlag 的疯狂判断），当`children`的类型为对象时，如果对象被定义为`ShapeFlags.ELEMENT`，那么它的子组件必不可能为`SLOTS_CHILDREN`类型，否则将 shapeFlag 添加上`ShapeFlags.SLOTS_CHILDREN`的比特位。
 
 vue 源码中的`normalizeChildren`实现更为复杂，考虑了很多类型的组件和情况，已包含个人的注释：
 
@@ -652,5 +757,3 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
 </details>
 
 <img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" style="zoom:40%;" />
-
-### 未完成，待更新

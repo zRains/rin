@@ -18,7 +18,9 @@ const parser = async (rawText: string) => {
     .use(remarkParse.default)
     .use(remarkGfm.default, { stringLength: stringWidth.default })
     .use(remarkFrontmatter.default)
-    .use(remarkToc.default)
+    .use(remarkToc.default, {
+      heading: '目录|toc|table[ -]of[ -]contents?'
+    })
     .use(remarkRehype.default, {
       footnoteLabel: '脚注',
       footnoteBackLabel: '返回内容',
