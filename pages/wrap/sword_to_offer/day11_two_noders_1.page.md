@@ -1,7 +1,7 @@
 ---
 title: '第11天 - 双指针1（简单）'
 wrap: ['sword_to_offer']
-scope: ['algorithm', 'LeetCode', 'DP']
+scope: ['algorithm', 'LeetCode']
 ---
 
 ### [剑指 Offer 18. 删除链表的节点](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
@@ -100,11 +100,8 @@ var getKthFromEnd = function (head, k, i = 0, result = []) {
  */
 var getKthFromEnd = function (head, k) {
   let a = (b = head)
-  for (let i = 0; i < k; i++) {
-    b = b.next
-  }
   while (b) {
-    a = a.next
+    if (k-- <= 0) a = a.next
     b = b.next
   }
   return a
