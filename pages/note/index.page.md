@@ -7,6 +7,42 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### 多进程并发服务器连接过程
+
+当父进程产生新的子进程后，父、子进程共享父进程在调用 fork 之前的所有描述符。一般情况下，接下来这样父进程只负责接收客户请求，而子进程只负责处理客户请求。关闭不需要的描述符既可以节省系统资源，又可以防止父、子进程同时对共享描述符进程操作，产生不可预计的后果。
+
+- 当服务器调用 accept 函数时，连接请求从客户到达服务器。
+- 客户的连接请求被服务器接收后，新的已连接套接字即 connfd 被创建，可通过此描述符读、写数据。
+- 服务器的下一步就是调用 fork 函数，如图下图所示，给出了从 fork 函数返回后的状态。此时描述符 listenfd 和 connfd 在父、子进程间共享。
+- 接下来就由父进程关闭已连接描述符，由子进程关闭监听描述符。
+
+<details>
+<summary>展开图列</summary>
+<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8-ce0e1c97fb85235d2e817559f484d394.png" alt="多进程并发服务器" style="zoom:40%;" />
+</details>
+
+---
+
+### socket 函数中协议族和套接字类型组合
+
+socket 函数如下：
+
+```c
+#include <sys/socket.h>
+
+int socket(int family,int type,int protocol);
+```
+
+socket 函数中 family 参数指明协议族，type 指明生产的套接字类型。
+
+| 套接字类型\协议族 | AF_INET | AF_INET6 |
+| ----------------- | ------- | -------- |
+| SOCK_STREAM       | TCP     | TCP      |
+| SOCK_DGRAM        | UDP     | UDP      |
+| SOCK_RAW          | IPV4    | IPV6     |
+
+---
+
 ### Android Studio 的 10.0.2.2
 
 在 Android Studio 内如果想要连接本地的服务（socket，http）是不能使用 127.0.0.1、localhost 的，因为 Android 模拟器（simulator）把它自己作为了 localhost。如果你想在模拟器 simulator 上面访问你的电脑，那么就使用 android 内置的 IP 10.0.2.2 吧， 它是模拟器设置的特定 ip，是你的电脑的别名 alias 。
