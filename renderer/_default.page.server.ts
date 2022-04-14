@@ -69,7 +69,12 @@ async function resolvePages(context: { _allPageFiles: any }) {
 }
 
 export async function render(pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }) {
-  Object.defineProperty(pageContext, 'Pages', { value: await resolvePages(pageContext) })
+  Object.defineProperty(pageContext, 'Pages', {
+    value: await resolvePages(pageContext),
+    enumerable: true,
+    configurable: true,
+    writable: true
+  })
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
   const title = pageContext.documentProps?.title || 'zrain'
@@ -91,7 +96,6 @@ export async function render(pageContext: PageContextBuiltIn & PageContext & { _
       </body>
     </html>`
   return {
-    documentHtml,
-    pageContext: {}
+    documentHtml
   }
 }

@@ -1,4 +1,4 @@
-import { createSSRApp, defineComponent, h, markRaw, provide } from 'vue'
+import { createSSRApp, defineComponent, h, markRaw, provide, reactive } from 'vue'
 import { Icon } from '@iconify/vue'
 import { assign } from '../utils/helpers'
 import PageShell from './PageShell.vue'
@@ -12,11 +12,12 @@ import './styles/nprogress.scss'
 import SiteBack from './components/global/site_back.vue'
 
 export default function createApp(pageContext: PageContext) {
-  const { Page, pageProps = {} } = pageContext
+  const { Page, Pages, pageProps = {} } = pageContext
   let rootComponent: any
+  const pageContextReactive = reactive(pageContext)
   const PageWithWrapper = defineComponent({
     setup() {
-      provide(pageContextKey, pageContext)
+      provide(pageContextKey, pageContextReactive)
     },
     data() {
       return {
@@ -44,6 +45,7 @@ export default function createApp(pageContext: PageContext) {
   return assign(App, {
     changePage(pageContext: PageContext) {
       const { Page, pageProps = {} } = pageContext
+      Object.assign(pageContextReactive, pageContext, { Pages })
       rootComponent.Page = markRaw(Page)
       rootComponent.pageProps = markRaw(pageProps)
     }

@@ -3,7 +3,14 @@
     <div class="headerContent">
       <a href="/" class="avatar"></a>
       <ul class="linkBox">
-        <li v-for="link in headerLinks" :key="link.path" class="headerLink">
+        <li
+          v-for="link in headerLinks"
+          :key="link.path"
+          :class="{
+            headerLink: true,
+            active: pageContext.url === '/' ? pageContext.url === link.path : link.path.startsWith(pageContext.url)
+          }"
+        >
           <a :href="link.path">{{ link.label }}</a>
         </li>
       </ul>
@@ -12,7 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import { headerLinks } from '../../../utils/constants'
+import { inject } from 'vue'
+import { pageContextKey, headerLinks } from '../../../utils/constants'
+
+const pageContext = inject(pageContextKey)!
 </script>
 
 <style lang="scss">
@@ -44,6 +54,10 @@ import { headerLinks } from '../../../utils/constants'
         list-style: none;
         font-size: 1.05em;
         font-weight: 600;
+        &.active a {
+          color: $primary;
+          text-decoration: underline;
+        }
         &:not(:last-child) {
           margin-right: gap(2);
         }
