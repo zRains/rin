@@ -57,7 +57,7 @@ async function resolvePages(context: { _allPageFiles: any }) {
         pages.set(routePath, {
           path: routePath,
           matter: data,
-          ctime: fileStat.ctime,
+          ctime: fileStat.birthtime,
           mtime: fileStat.mtime,
           size: fileStat.size
         })
