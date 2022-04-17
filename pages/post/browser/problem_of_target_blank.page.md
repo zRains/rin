@@ -25,7 +25,7 @@ scope: ['browser']
 
 具体信息如下：
 
-![image-20220328000707155](https://cdn.jsdelivr.net/gh/zrains/images/2022/03/image-20220328000707155-8f7c6e839b46c77ce852360e89d64cdf.png)
+![image-20220328000707155](https://res.zrain.fun/images/2022/03/image-20220328000707155-8f7c6e839b46c77ce852360e89d64cdf.png)
 
 此时通过`opener`可以修改父标签的一些行为，就比如重定向操作：
 

@@ -4,7 +4,7 @@ wrap: ['source_of_vue3']
 scope: ['Vue3', 'source']
 ---
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>
+<img src="https://res.zrain.fun/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>
 
 ### 目录
 
@@ -202,7 +202,7 @@ export const enum ShapeFlags {
 
 > 到现在还是`createRenderer`里面的一小部分。这个函数可以说是相当夸张，在`mini-vue`里大致**600**行，到了`vue-core`直接飙升到**2000**行。如果真去啃岂不是诸神黄昏！！
 >
-> ![image-20220405205520985](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/image-20220405205520985-727d65c8faadf9d228ef760773602393.png)
+> ![image-20220405205520985](https://res.zrain.fun/images/2022/04/image-20220405205520985-727d65c8faadf9d228ef760773602393.png)
 
 `createRenderer`里面除了`patch`还包含了大量的各种组件处理函数。
 
@@ -225,7 +225,7 @@ function processComponent(n1, n2, container, parentComponent) {
 
 其中，`n1`为`n2`的生成前一个`subTree`，可以理解为后者是前者更新后的 vnode。很简单的逻辑，`n1`为 null 则表明需要挂载，因为你前一次的记录都没有，还怎么更新啊，肯定要先挂载产生一个记录啊。🤣
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/processComponent-4a486fa454ace19989a2c055a01eb98d.png" alt="processComponent" />
+<img src="https://res.zrain.fun/images/2022/04/processComponent-4a486fa454ace19989a2c055a01eb98d.png" alt="processComponent" />
 
 ### `mountComponent` - 组件实例被创建
 
@@ -314,7 +314,7 @@ export const publicPropertiesMap: PublicPropertiesMap = /*#__PURE__*/ extend(Obj
 
 可能上面的`instance`并不能感受到**大量**的属性，在 vue-core 里足足有**56**个属性。
 
-![createComponentInstance](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/createComponentInstance-311fe19abdbd436a0280782c899e14b2.png)
+![createComponentInstance](https://res.zrain.fun/images/2022/04/createComponentInstance-311fe19abdbd436a0280782c899e14b2.png)
 
 我发现至今有两个地方出现了 uid 标识，一个是在[createAppAPI](#createappapi---将创造能力给我们)，一个就是在这里。两个 uid 的初始声名在不同文件里：
 
@@ -756,4 +756,4 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
 
 </details>
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" style="zoom:40%;" />
+<img src="https://res.zrain.fun/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" style="zoom:40%;" />

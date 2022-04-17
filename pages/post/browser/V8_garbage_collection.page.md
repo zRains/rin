@@ -17,7 +17,7 @@ V8 的垃圾回收策略主要是基于**分代式垃圾回收机制**，其根�
 
 **map 区(map_space)**：存放 Cell 和 Map，每个区域都是存放相同大小的元素，结构简单。
 
-![V8_areas](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE-899d5a691c0ae83532b376c4658fd19e.svg)
+![V8_areas](https://res.zrain.fun/images/2022/02/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE-899d5a691c0ae83532b376c4658fd19e.svg)
 
 上图中的带斜纹的区域代表暂未使用的内存，新生代(new_space)被划分为了两个部分，其中一部分叫做 inactive new space，表示暂未激活的内存区域，另一部分为激活状态，为什么会划分为两个部分呢，在下一小节我们会讲到。
 
@@ -33,19 +33,19 @@ V8 的垃圾回收策略主要是基于**分代式垃圾回收机制**，其根�
 
 假设我们在`From`空间中分配了三个对象 A、B、C
 
-![V8_garbage_collection](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection-7166bb5b82b8c4af848d4258bb37cbe4.svg)
+![V8_garbage_collection](https://res.zrain.fun/images/2022/02/V8_garbage_collection-7166bb5b82b8c4af848d4258bb37cbe4.svg)
 
 当程序主线程任务第一次执行完毕后进入垃圾回收时，发现对象 A 已经没有其他引用，则表示可以对其进行回收，同时将依然活跃的 B，C 对象复制一份到 To 空间:
 
-![V8_garbage_collection_2](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_2-0a2c3e7d4e98f1cdfc2760a79fe3074c.svg)
+![V8_garbage_collection_2](https://res.zrain.fun/images/2022/02/V8_garbage_collection_2-0a2c3e7d4e98f1cdfc2760a79fe3074c.svg)
 
 清空 From 空间中的内容
 
-![V8_garbage_collection_3](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_3-cc42c334af6deccf62c47c37dc2dd808.svg)
+![V8_garbage_collection_3](https://res.zrain.fun/images/2022/02/V8_garbage_collection_3-cc42c334af6deccf62c47c37dc2dd808.svg)
 
 接着 From 空间和 To 空间进行一次角色互换，注意并不涉及复制交换操作
 
-![V8_garbage_collection_4](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_4-9d55fda859b0022151b4b15d50a6a55f.svg)
+![V8_garbage_collection_4](https://res.zrain.fun/images/2022/02/V8_garbage_collection_4-9d55fda859b0022151b4b15d50a6a55f.svg)
 
 到此，一轮垃圾回收操作完成，From 空间开始接纳新的对象。
 
@@ -60,7 +60,7 @@ V8 的垃圾回收策略主要是基于**分代式垃圾回收机制**，其根�
 - 对象是否经历过一次`Scavenge`算法
 - `To`空间的内存占比是否已经超过`25%`
 
-![V8_garbage_collection_5](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_5-d8bbe819c1567525cf617c03b5f3386c.svg)
+![V8_garbage_collection_5](https://res.zrain.fun/images/2022/02/V8_garbage_collection_5-d8bbe819c1567525cf617c03b5f3386c.svg)
 
 之所以有`25%`的内存限制是因为`To`空间在经历过一次`Scavenge`算法后会和`From`空间完成角色互换，会变为`From`空间，后续的内存分配都是在`From`空间中进行的，如果内存使用过高甚至溢出，则会影响后续对象的分配，因此超过这个限制之后对象会被直接转移到老生代来进行管理。
 
@@ -90,19 +90,19 @@ V8 的垃圾回收策略主要是基于**分代式垃圾回收机制**，其根�
 2. 本地函数的局部变量和参数
 3. 当前嵌套调用链上的其他函数的变量和参数
 
-![img](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/16ee468e85a1084d-tplv-t2oaga2asx-watermark-62ff287c37ae72c0de24665a69240725.webp)
+![img](https://res.zrain.fun/images/2022/02/16ee468e85a1084d-tplv-t2oaga2asx-watermark-62ff287c37ae72c0de24665a69240725.webp)
 
 **Mark-Compact(标记整理)**
 
 `Mark-Sweep`算法存在一个问题，就是在经历过一次标记清除后，内存空间可能会出现不连续的状态，因为我们所清理的对象的内存地址可能不是连续的，所以就会出现内存碎片的问题，导致后面如果需要分配一个大对象而空闲内存不足以分配，就会提前触发垃圾回收，而这次垃圾回收其实是没必要的，因为我们确实有很多空闲内存，只不过是不连续的。
 
-![V8_garbage_collection_6](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_6-f5f5f410264a728da39dcc8842e96a95.svg)
+![V8_garbage_collection_6](https://res.zrain.fun/images/2022/02/V8_garbage_collection_6-f5f5f410264a728da39dcc8842e96a95.svg)
 
 A，B，C 被回收后产生 2 个不连续空间。这时得想办法合并空闲空间。
 
 Mark-Compact 主要就是用来解决内存的碎片化问题的，回收过程中将死亡对象清除后，在整理的过程中，会将活动的对象往堆内存的一端进行移动，移动完成后再清理掉边界外的全部内存：
 
-![V8_garbage_collection_7](https://cdn.jsdelivr.net/gh/zrains/images/2022/02/V8_garbage_collection_7-c662333d20c0373773fcde3a367ea5b1.svg)
+![V8_garbage_collection_7](https://res.zrain.fun/images/2022/02/V8_garbage_collection_7-c662333d20c0373773fcde3a367ea5b1.svg)
 
 至此就完成了一次老生代垃圾回收的全部过程。
 
@@ -130,7 +130,7 @@ Mark-Compact 主要就是用来解决内存的碎片化问题的，回收过程�
 
 ```js
 const elements = {
-  button: document.getElementById('button'),
+  button: document.getElementById('button')
 }
 
 function removeButton() {

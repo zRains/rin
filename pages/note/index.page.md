@@ -18,7 +18,7 @@ index: true
 
 <details>
 <summary>展开图列</summary>
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8-ce0e1c97fb85235d2e817559f484d394.png" alt="多进程并发服务器" style="zoom:40%;" />
+<img src="https://res.zrain.fun/images/2022/04/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8-ce0e1c97fb85235d2e817559f484d394.png" alt="多进程并发服务器" style="zoom:40%;" />
 </details>
 
 ---
@@ -69,7 +69,7 @@ console.log(delete undefined) // false
 
 在`window`下是可以输出`undefined`的：
 
-![image-20220403175859377](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/image-20220403175859377-eb728c6f601ef83acebfda0b0134d9f7.png)
+![image-20220403175859377](https://res.zrain.fun/images/2022/04/image-20220403175859377-eb728c6f601ef83acebfda0b0134d9f7.png)
 
 看到`configurable: false`就知道为什么删除`undefined`是 false 了。对于`null`，它是一个关键字，相当于没有，不管怎么删除只有返回 true。
 

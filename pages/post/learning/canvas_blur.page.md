@@ -21,7 +21,7 @@ scope: ['browser', 'canvas']
 
 举个简单的例子，在 iPhone3G 时代，屏幕宽度是 320px，其宽度上的物理像素也是 320px；而到了 4s 时代，屏幕宽度依然是 320px，但是宽度上的物理像素却变成了 640px，是宽度的两倍。屏幕宽度没变，物理像素却增加了，所以为了屏幕显示的内容不改变，原先需要一个像素绘制的点，现在会用两个像素来绘制。
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/New%20Page-08388adc8c5e2751827a91cfe4ec80ab.png" alt="devicePixelRatio" style="zoom:40%;" />
+<img src="https://res.zrain.fun/images/2022/04/New%20Page-08388adc8c5e2751827a91cfe4ec80ab.png" alt="devicePixelRatio" style="zoom:40%;" />
 
 为了表示这种屏幕的特性，浏览器全局对象下就有了这样一个属性——devicePixelRatio 设备像素比，它的计算方式是：
 

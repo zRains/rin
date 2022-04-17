@@ -16,12 +16,12 @@ scope: ['algorithm', 'LeetCode']
 
 我们可以将二维数组的索引元素置于左下角：
 
-![二维数组中的查找-1](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/6a083897417b51e94ed84e3483d334078d851e691eb8655b45432372ecdea9d6-Picture2-3c1ea7bf7256b33edcedcb9ad1db44bb.png)
+![二维数组中的查找-1](https://res.zrain.fun/images/2022/04/6a083897417b51e94ed84e3483d334078d851e691eb8655b45432372ecdea9d6-Picture2-3c1ea7bf7256b33edcedcb9ad1db44bb.png)
 
 这就有一个特性：每行最小的在第一个，如果要查找的数比这个还小，就能推断出这个数一定不在这一行，这时便可消去这一行。重复上一步骤，直到刚好小于目标值的那一行。
 由于列是**从上到下递增**，利用这个特性，如果当前数字小于目标值，说明上面的数字肯定达不到要求，这时就可消除此列：
 
-![二维数组中的查找-2](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/116704601a28972d17b32cc641485a1ab707930504a720160e121b092e9f7084-Picture6-e7e14551a5524b4bb4e8785a53d6563c.png)
+![二维数组中的查找-2](https://res.zrain.fun/images/2022/04/116704601a28972d17b32cc641485a1ab707930504a720160e121b092e9f7084-Picture6-e7e14551a5524b4bb4e8785a53d6563c.png)
 
 如此往复，就可找到目标值：
 

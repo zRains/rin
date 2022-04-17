@@ -3,7 +3,7 @@ title: '关于NodeJS中的流（Stream）'
 scope: ['node']
 ---
 
-<div style="display:flex; justify-content:center"><img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" style="zoom:40%;" /></div>
+<div style="display:flex; justify-content:center"><img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" style="zoom:40%;" /></div>
 
 ### 目录
 
@@ -33,14 +33,14 @@ scope: ['node']
 NodeJs 中所有的流都有缓冲池，缓冲池存在的目的是增加流的效率，当数据的生产和消费都需要时间时，我们可以在下一次消费前提前生产数据存放到缓冲池。但是缓冲池并不是时刻都处于使用状态，例如缓冲池为空时，数据生产后就不会放入缓冲池而是直接消费。
 
 <div style="display:flex; justify-content:center">
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" style="zoom:40%;" /></div>
+<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" style="zoom:40%;" /></div>
 
 ### 缓冲池背压问题与 Stream 的 highWaterMark
 
 内存的读写速度远远大于磁盘的读写速度。在流的应用中，当内存中的数据要存放到磁盘时，中间的传送通道可以想象为一个“管道（pipe）”,而管道里面的就是“流”。内存的数据流入管道是非常快的，当管道塞满时，内存中就会产生数据背压，数据积压在内存中，占用资源。
 
 <div style="display:flex; justify-content:center">
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-7c3c87518e926c51c65d9e73c6969707.png" alt="stream的背压问题" style="zoom:40%;" /></div>
+<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-7c3c87518e926c51c65d9e73c6969707.png" alt="stream的背压问题" style="zoom:40%;" /></div>
 
 NodeJs Stream 的解决办法是为每一个流的 缓冲池（就是图中写入队列）设置一个浮标值（highWaterMark），当其中数据量达到这个浮标值后，往缓冲池再次 push 数据时就会返回 false，表示当前流中缓冲池内容已经达到浮标值，不希望再有数据写入了，这时我们应该立即停止数据的生产，防止缓冲池过大产生背压。
 
@@ -116,7 +116,7 @@ process.stdin.resume() // 阻止node退出
 
 从下面的运行结果来看，读取文件后会使得 node 进程内存使用量陡增，不用说也知道是读取整个 big.file 到内存当中，这还不算大文件，如果直接上 10GB（超出 node 限制内存）程序会直接崩溃。
 
-![无Stream内存使用情况](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/%E6%97%A0Stream%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5-ca37d5473e24f3f402ac248d2f17ed03.gif)
+![无Stream内存使用情况](https://res.zrain.fun/images/2022/04/%E6%97%A0Stream%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5-ca37d5473e24f3f402ac248d2f17ed03.gif)
 
 然而，当我们使用了流，结果会完全不一样。下面是使用了流处理后的代码：
 
@@ -134,7 +134,7 @@ setTimeout(() => {
 
 从运行结果来看，读取文件并没有占用太多内存：
 
-![有Stream内存使用情况](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/%E6%9C%89Stream%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5-fa50d0c0d1339efd96869a929bd81d31.gif)
+![有Stream内存使用情况](https://res.zrain.fun/images/2022/04/%E6%9C%89Stream%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5-fa50d0c0d1339efd96869a929bd81d31.gif)
 
 ### 流
 
@@ -172,7 +172,7 @@ interface ReadWriteStream extends ReadableStream, WritableStream {}
 
 流常用的事件和方法：
 
-![Stream常用事件与方法](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/1-HGXpeiF5-hJrOk_8tT2jFA-eafdef8afb2c68d774071858fcfd6fbc.png)
+![Stream常用事件与方法](https://res.zrain.fun/images/2022/04/1-HGXpeiF5-hJrOk_8tT2jFA-eafdef8afb2c68d774071858fcfd6fbc.png)
 
 NodeJs 中的流有 4 种：
 
@@ -263,7 +263,7 @@ null
 
 #### 暂停模式（Paused Mode）
 
-![Paused模式](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/cbea1fa0d58d45ee8e9fd6653a8abb0e-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-e244a8861164b251c5571e0342cba03a.webp)
+![Paused模式](https://res.zrain.fun/images/2022/04/cbea1fa0d58d45ee8e9fd6653a8abb0e-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-e244a8861164b251c5571e0342cba03a.webp)
 
 暂停模式下，一个可读流读创建时，模式是暂停模式，创建后会自动调用 `_read` 方法，把数据从数据源 push 到缓冲池中，直到缓冲池中的数据达到了浮标值。每当数据到达浮标值时，可读流会触发一个`readable`事件，告诉消费者有数据已经准备好了，可以继续消费。
 
@@ -273,7 +273,7 @@ null
 
 #### 流动模式（Flowing Mode）
 
-![Flowing模式](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/bb06ec082f774a0cbd80146b17b88fbc-c5f81445e33166f750b8747d2f8d7cc8.png)
+![Flowing模式](https://res.zrain.fun/images/2022/04/bb06ec082f774a0cbd80146b17b88fbc-c5f81445e33166f750b8747d2f8d7cc8.png)
 
 与暂停模式不同的是：流动模式下，缓冲池里面的数据会自动输出到消费端进行消费。
 
@@ -305,7 +305,7 @@ console.log(readStreams.readableFlowing)
 
 ### Writable
 
-![WritableStream](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/5900bc9c471140a0859fc80a519d66df-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-39bf6402766d6bc114aa8bf567a1f05e.webp)
+![WritableStream](https://res.zrain.fun/images/2022/04/5900bc9c471140a0859fc80a519d66df-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-39bf6402766d6bc114aa8bf567a1f05e.webp)
 
 Writable 可以类比做 Readable 相反的操作，生产者和消费着互调身份。
 
@@ -389,7 +389,7 @@ myWritable.on('drain', productionData)
 
 ### Duplex
 
-![Duplex模式](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/5e40e4426450453ba20d1702dfbc3c9d-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-eb135bd0698734a1a6bab111ab317e83.webp)
+![Duplex模式](https://res.zrain.fun/images/2022/04/5e40e4426450453ba20d1702dfbc3c9d-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-eb135bd0698734a1a6bab111ab317e83.webp)
 
 Duplex 流需要同时实现下面两个方法：
 
@@ -440,7 +440,7 @@ process.stdin.pipe(inoutStream).pipe(process.stdout)
 
 ### Transform
 
-![Transform](https://cdn.jsdelivr.net/gh/zrains/images/2022/04/6317a5a204ba47829bbf8d273b0e9bd0-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-29c92d7f4e39b3c8eb08da7b94f95b98.webp)
+![Transform](https://res.zrain.fun/images/2022/04/6317a5a204ba47829bbf8d273b0e9bd0-tplv-k3u1fbpfcp-zoom-in-crop-mark-1304-0-0-0-29c92d7f4e39b3c8eb08da7b94f95b98.webp)
 
 对于 Transform，我们不需要实现 read 或者 write 方法，我们只需要实现 transform 方法就好了——它是一个糅杂方法。它既有 write 方法的特征，又可以在里面 push 数据。
 
@@ -487,7 +487,7 @@ fs.createReadStream(file)
 上面的一些代码用到了`Pipe`函数。我们将他称为“管道”。
 
 <div style="display:flex; justify-content:center">
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--615f4e5c48b2a9f2dd5c0399d17e184a.png" alt="Pipe" style="zoom:40%;" /></div>
+<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--615f4e5c48b2a9f2dd5c0399d17e184a.png" alt="Pipe" style="zoom:40%;" /></div>
 
 管道是将上一个程序的输出作为下一个程序的输入，这是管道在 Linux 中管道的作用。NodeJs 中的管道其实也类似，它管道用于连接两个流，上游的流的输出会作为下游的流的输入。管道 sourec.pipe(dest, options) 要求 sourec 是可读的，dest 是可写的。其返回值是 dest。
 

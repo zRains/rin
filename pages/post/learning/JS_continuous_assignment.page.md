@@ -26,7 +26,7 @@ console.log(b.x)
 当执行完`let b = a`时，变量情况如下：
 
 <p align="center">
-<img  src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/image-20220403165852196-3491d2ad5094c3dbced4af1bb535ede3.png" alt="image-20220403165852196" style="zoom:60%;" />
+<img  src="https://res.zrain.fun/images/2022/04/image-20220403165852196-3491d2ad5094c3dbced4af1bb535ede3.png" alt="image-20220403165852196" style="zoom:60%;" />
 </p>
 
 之后执行`a.x = a = {n:2}`，首先进行一遍**左查找**。这里得提一个概念：结合性。
@@ -46,13 +46,13 @@ console.log(b.x)
 此时语句可变成：`a.x = (a = {n:2})`，首先对`a.x`进行左查找，发现`x`不存在，那就先赋个`undefined`：
 
 <p align="center">
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/image-20220403172527865-342f8ceffb552264c458972f6964be4a.png" alt="image-20220403172527865" style="zoom:65%;" />
+<img src="https://res.zrain.fun/images/2022/04/image-20220403172527865-342f8ceffb552264c458972f6964be4a.png" alt="image-20220403172527865" style="zoom:65%;" />
 </p>
 
 然后现在进行右查找，右查找是个赋值表达式`a = {n: 2}`，所以得先处理这个赋值表达式。而前面的`a.x`还在等待后面表达式处理返回的结果。
 
 <p align="center">
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/image-20220403173411601-1058ecfd3e62754c10510f9abf9e5bac.png" alt="image-20220403173411601" style="zoom:67%;" />
+<img src="https://res.zrain.fun/images/2022/04/image-20220403173411601-1058ecfd3e62754c10510f9abf9e5bac.png" alt="image-20220403173411601" style="zoom:67%;" />
 </p>
 
 重要的是，此时的`a.x`已经指向了内存中的`{ n: 1, x: undefined }`中的`x`，目前他正等待被赋值，所以下面在处理赋值表达式`a = {n: 2}`时候，即使 a 发生了指向的变化，**但也不再影响此刻的`a.x`了**，因为已经对`a.x`进行了指向的确定，只不过他现在正在等待被赋值。

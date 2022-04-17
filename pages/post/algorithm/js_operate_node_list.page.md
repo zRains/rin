@@ -102,4 +102,4 @@ var reversePrint = function (head) {
 
 结果对比：
 
-![image-20220320133657219](https://cdn.jsdelivr.net/gh/zrains/images/2022/03/image-20220320133657219-987a10ab5393bf4af9fa484bd2f99157.png)
+![image-20220320133657219](https://res.zrain.fun/images/2022/03/image-20220320133657219-987a10ab5393bf4af9fa484bd2f99157.png)

@@ -30,11 +30,11 @@ export const enum ShapeFlags {
 
 与操作：当两个比特位都为 1 时，结果就为 1，其余情况均为 0。
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/bit%20operation1-6cf5016a8296c3f620251c3a6f5a777c.png" alt="bit operation1" style="zoom:30%;" />
+<img src="https://res.zrain.fun/images/2022/04/bit%20operation1-6cf5016a8296c3f620251c3a6f5a777c.png" alt="bit operation1" style="zoom:30%;" />
 
 或操作：当其中一个比特位为 1 或者两个都为 1，结果就是 1，否则为 0。
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/bit%20operation1%20-1--fb49bca971ed23123bd0ab6a2073fd06.png" alt="bit operation2" style="zoom:30%;" />
+<img src="https://res.zrain.fun/images/2022/04/bit%20operation1%20-1--fb49bca971ed23123bd0ab6a2073fd06.png" alt="bit operation2" style="zoom:30%;" />
 
 下面是 mini-vue 的`createVNode`函数：
 
@@ -120,7 +120,7 @@ const vnode = {
 
 在`patch`阶段，通过`与`操作判断是否属于这个组件类型。在上面的位运算操作中我们可以想到只要两个数中某两个相同位置的比特位为 1，那么这个判断就成立：
 
-<img src="https://cdn.jsdelivr.net/gh/zrains/images/2022/04/bit%20operation1-c273ab00f3b0bc4bf4f2da2ad6a93436.png" alt="bit operation3" />
+<img src="https://res.zrain.fun/images/2022/04/bit%20operation1-c273ab00f3b0bc4bf4f2da2ad6a93436.png" alt="bit operation3" />
 也就是说，在`createVNode`里对`shapeFlag`再次操作是为了让这个组件有**更高**的标识，让他既可以被`ELEMENT`所识别，又可以被`TEXT_CHILDREN`识别。使用位运算，就不需要类似于
 
 ```javascript
