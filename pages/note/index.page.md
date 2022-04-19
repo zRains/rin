@@ -7,6 +7,22 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### Linux 启用 ssh 远程登陆
+
+登录目标机器，打开/etc/ssh/sshd_config 并将相应字段修改为：
+
+```bash
+# vim /etc/ssh/sshd_config
+PermitRootLogin yes
+PasswordAuthentication yes
+```
+
+之后重启 ssh 服务：
+
+```bash
+systemctl restart sshd
+```
+
 ### 多进程并发服务器连接过程
 
 当父进程产生新的子进程后，父、子进程共享父进程在调用 fork 之前的所有描述符。一般情况下，接下来这样父进程只负责接收客户请求，而子进程只负责处理客户请求。关闭不需要的描述符既可以节省系统资源，又可以防止父、子进程同时对共享描述符进程操作，产生不可预计的后果。
