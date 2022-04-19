@@ -35,6 +35,8 @@ NodeJs 中所有的流都有缓冲池，缓冲池存在的目的是增加流的�
 <div style="display:flex; justify-content:center">
 <img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" style="zoom:40%;" /></div>
 
+> 缓冲池其实就是利用 Buffer 缓冲区实现，具体文章见[JS 的二进制家族](/post/learning/js_binary_family#buffer)
+
 ### 缓冲池背压问题与 Stream 的 highWaterMark
 
 内存的读写速度远远大于磁盘的读写速度。在流的应用中，当内存中的数据要存放到磁盘时，中间的传送通道可以想象为一个“管道（pipe）”,而管道里面的就是“流”。内存的数据流入管道是非常快的，当管道塞满时，内存中就会产生数据背压，数据积压在内存中，占用资源。

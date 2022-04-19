@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 
-const uploadBanner = ref('上传新的图片')
+const uploadBanner = ref('替换新的图片')
 const imgRef = ref<HTMLImageElement>()
 const imgInput = ref<HTMLInputElement>()
 
@@ -22,7 +22,7 @@ onMounted(() => {
       const blobURL = window.URL.createObjectURL(file)
       imgRef.value!.src = blobURL
       imgRef.value!.onload = function () {
-        uploadBanner.value = '上传新的图片'
+        uploadBanner.value = '替换新的图片'
         window.URL.revokeObjectURL(blobURL)
       }
     } else uploadBanner.value = '无效媒体文件！仅支持png/jpeg/svg/jpg格式文件，重新上传'
@@ -40,6 +40,7 @@ onMounted(() => {
   height: 150px;
   padding: gap(1);
   border: 2.5px dotted $grey6;
+  background: $grey10;
   img {
     height: 100%;
     max-width: 60%;
