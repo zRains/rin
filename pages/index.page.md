@@ -15,7 +15,7 @@ index: true
 
 👨‍💻 所有开源项目均在 [**Github**](https://github.com/zRains)
 
-📝 这里算是记录琐事的地方吧 [**my site(yeah, here XD)**](https:zrain.fun)
+📝 这里算是记录琐事的地方吧 [**my site(yeah, here XD)**](/)
 
 💬 略知一二： [**Vue**](https://vuejs.org/)、**ECMAScript**
 

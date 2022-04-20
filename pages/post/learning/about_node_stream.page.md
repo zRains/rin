@@ -1,6 +1,6 @@
 ---
 title: '关于NodeJS中的流（Stream）'
-scope: ['node']
+scope: ['Node']
 ---
 
 <div style="display:flex; justify-content:center"><img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" style="zoom:40%;" /></div>
@@ -30,7 +30,7 @@ scope: ['node']
 
 ### 缓冲池
 
-NodeJs 中所有的流都有缓冲池，缓冲池存在的目的是增加流的效率，当数据的生产和消费都需要时间时，我们可以在下一次消费前提前生产数据存放到缓冲池。但是缓冲池并不是时刻都处于使用状态，例如缓冲池为空时，数据生产后就不会放入缓冲池而是直接消费。
+NodeJS 中所有的流都有缓冲池，缓冲池存在的目的是增加流的效率，当数据的生产和消费都需要时间时，我们可以在下一次消费前提前生产数据存放到缓冲池。但是缓冲池并不是时刻都处于使用状态，例如缓冲池为空时，数据生产后就不会放入缓冲池而是直接消费。
 
 <div style="display:flex; justify-content:center">
 <img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" style="zoom:40%;" /></div>
@@ -44,11 +44,11 @@ NodeJs 中所有的流都有缓冲池，缓冲池存在的目的是增加流的�
 <div style="display:flex; justify-content:center">
 <img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-7c3c87518e926c51c65d9e73c6969707.png" alt="stream的背压问题" style="zoom:40%;" /></div>
 
-NodeJs Stream 的解决办法是为每一个流的 缓冲池（就是图中写入队列）设置一个浮标值（highWaterMark），当其中数据量达到这个浮标值后，往缓冲池再次 push 数据时就会返回 false，表示当前流中缓冲池内容已经达到浮标值，不希望再有数据写入了，这时我们应该立即停止数据的生产，防止缓冲池过大产生背压。
+NodeJS Stream 的解决办法是为每一个流的 缓冲池（就是图中写入队列）设置一个浮标值（highWaterMark），当其中数据量达到这个浮标值后，往缓冲池再次 push 数据时就会返回 false，表示当前流中缓冲池内容已经达到浮标值，不希望再有数据写入了，这时我们应该立即停止数据的生产，防止缓冲池过大产生背压。
 
 ### EventEmitter
 
-NodeJs 中对 Stream 是一个实现了 EventEmitter 的抽象接口，所以先了解一下 EventEmitter。
+NodeJS 中对 Stream 是一个实现了 EventEmitter 的抽象接口，所以先了解一下 EventEmitter。
 
 EventEmitter 是一个实现事件发布订阅功能（发布订阅者模式）的类，来看一个简单的例子：
 
@@ -176,7 +176,7 @@ interface ReadWriteStream extends ReadableStream, WritableStream {}
 
 ![Stream常用事件与方法](https://res.zrain.fun/images/2022/04/1-HGXpeiF5-hJrOk_8tT2jFA-eafdef8afb2c68d774071858fcfd6fbc.png)
 
-NodeJs 中的流有 4 种：
+NodeJS 中的流有 4 种：
 
 - Readable 可读流（实现 ReadableStream）
 
@@ -491,7 +491,7 @@ fs.createReadStream(file)
 <div style="display:flex; justify-content:center">
 <img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--615f4e5c48b2a9f2dd5c0399d17e184a.png" alt="Pipe" style="zoom:40%;" /></div>
 
-管道是将上一个程序的输出作为下一个程序的输入，这是管道在 Linux 中管道的作用。NodeJs 中的管道其实也类似，它管道用于连接两个流，上游的流的输出会作为下游的流的输入。管道 sourec.pipe(dest, options) 要求 sourec 是可读的，dest 是可写的。其返回值是 dest。
+管道是将上一个程序的输出作为下一个程序的输入，这是管道在 Linux 中管道的作用。NodeJS 中的管道其实也类似，它管道用于连接两个流，上游的流的输出会作为下游的流的输入。管道 sourec.pipe(dest, options) 要求 sourec 是可读的，dest 是可写的。其返回值是 dest。
 
 > 对于处于管道中间的流既是下一个流的上游也是上一个流的下游，所以其需要时一个可读可写的双工流，一般我们会使用 Transform 来作为管道中间的流。
 
