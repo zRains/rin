@@ -1,5 +1,5 @@
 ---
-title: 'interface 和 type 索引签名之问'
+title: 'interface和type索引签名之问'
 scope: ['TS']
 ---
 

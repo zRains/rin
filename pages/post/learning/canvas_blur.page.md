@@ -1,5 +1,5 @@
 ---
-title: 'Canvas 为什么变得这么模糊？'
+title: 'Canvas为什么变得这么模糊？'
 injectComponents: [{ name: 'CanvasBlur', path: '@components/post/canvas_blur.vue' }]
 scope: ['browser', 'canvas']
 ---
