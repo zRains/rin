@@ -17,3 +17,16 @@ a {
 .no-select {
   user-select: none;
 }
+
+*::selection {
+  background: $primary1;
+  color: #ffffff;
+}
+*::-moz-selection {
+  background: $primary1;
+  color: #ffffff;
+}
+*::-webkit-selection {
+  background: $primary1;
+  color: #ffffff;
+}
