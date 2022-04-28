@@ -21,8 +21,6 @@ index: true
 
 📫 有空常联系 XD： **zrainfun@gmail.com**
 
----
-
 #### 常在这些地方混:
 
 <a href="https://codepen.io/pocket-gad" target="_blank" class="iconLink" rel="noreferrer"><Icon icon="akar-icons:codepen-fill" height="28" width="40"/></a>

@@ -23,7 +23,7 @@ import Header from '../components/public/header.vue'
     box-sizing: border-box;
     max-width: $maxContentWidth;
     margin: 0 auto;
-    padding: 0 gap();
+    padding: gap();
     padding-top: gap(2);
     background-image: linear-gradient(
         0deg,

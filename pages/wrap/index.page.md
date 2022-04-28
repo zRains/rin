@@ -16,8 +16,6 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 
 <WrapMatter wrap="tc"/>
 
----
-
 ## [剑指 Offer](/wrap/sword_to_offer)
 
 网址：[LeetCode](https://leetcode-cn.com/study-plan/lcof)
@@ -26,8 +24,6 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 
 <WrapMatter wrap="sword_to_offer"/>
 
----
-
 ## [Vue3 解析集](/wrap/source_of_vue3)
 
 网址：[mini-vue](https://github.com/cuixiaorui/mini-vue)
@@ -35,5 +31,3 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 无聊时看一看，会更无聊。`Vue3`的源码实在啃不动，看看`mini-vue`的实现也许会有帮助，这个库是原框架的一个大致映射，只不过简单化了。
 
 <WrapMatter wrap="source_of_vue3"/>
-
----

@@ -23,6 +23,7 @@
     "no-shadow": "off",
     "no-underscore-dangle": "off",
     "no-nested-ternary": "off",
+    "no-use-before-define": "off",
     "vue/multi-word-component-names": "off",
     "import/extensions": [
       "error",

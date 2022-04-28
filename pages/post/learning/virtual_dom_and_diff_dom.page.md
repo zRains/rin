@@ -3,8 +3,7 @@ title: '简单实现Virtual DOM和Diff算法'
 scope: ['JS', 'browser']
 ---
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/Virtual%20DOM-1466bad2aa13335eb14901523f771623.png" alt="Virtual DOM" style="zoom:38%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/Virtual%20DOM-1466bad2aa13335eb14901523f771623.png" alt="Virtual DOM" zoom="38%" />
 
 在 Vue、React 等各种工业级前端框架中我常会听到 Virtual DOM 这一概念，在看 mini-vue 源码时对其有一些了解但不够细致。借此机会详细了解一下它的作用，并简单实现一个 Virtual DOM。
 

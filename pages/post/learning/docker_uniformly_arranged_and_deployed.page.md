@@ -3,8 +3,7 @@ title: 'Docker容器统一编排部署'
 scope: ['Docker']
 ---
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%EF%BC%9Adocker%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92-46277f18ae888be5b15916c3748d6986.png" alt="docker容器编排大致结构" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%EF%BC%9Adocker%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92-46277f18ae888be5b15916c3748d6986.png" alt="docker容器编排大致结构" zoom="40%" />
 
 本次工程实践课题为 Docker 容器统一编排部署。借此机会了解一下容器编排技术。
 

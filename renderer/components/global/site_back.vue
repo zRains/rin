@@ -5,18 +5,10 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'SiteBack',
-  setup() {
-    const goBack = () => {
-      window.history.back()
-    }
-    return { goBack }
-  }
-})
+<script lang="ts" setup>
+function goBack() {
+  window.history.back()
+}
 </script>
 
 <style lang="scss">

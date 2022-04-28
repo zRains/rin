@@ -10,6 +10,7 @@ import './styles/nprogress.scss'
 
 // Global Components
 import SiteBack from './components/global/site_back.vue'
+import CenterImg from './components/global/center_img.vue'
 
 export default function createApp(pageContext: PageContext) {
   const { Page, Pages, pageProps = {} } = pageContext
@@ -42,6 +43,7 @@ export default function createApp(pageContext: PageContext) {
   // Register Global Components
   App.component('SiteBack', SiteBack)
   App.component('Icon', Icon)
+  App.component('CenterImg', CenterImg)
   return assign(App, {
     changePage(pageContext: PageContext) {
       const { Page, pageProps = {} } = pageContext

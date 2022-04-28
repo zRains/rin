@@ -3,7 +3,7 @@ title: '关于NodeJS中的流（Stream）'
 scope: ['Node']
 ---
 
-<div style="display:flex; justify-content:center"><img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" zoom="38%" />
 
 ### 目录
 
@@ -32,8 +32,7 @@ scope: ['Node']
 
 NodeJS 中所有的流都有缓冲池，缓冲池存在的目的是增加流的效率，当数据的生产和消费都需要时间时，我们可以在下一次消费前提前生产数据存放到缓冲池。但是缓冲池并不是时刻都处于使用状态，例如缓冲池为空时，数据生产后就不会放入缓冲池而是直接消费。
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--9705a903c100c0aa68cc36f9916630dc.png" alt="stream的缓冲池" zoom="40%" />
 
 > 缓冲池其实就是利用 Buffer 缓冲区实现，具体文章见[JS 的二进制家族](/post/learning/js_binary_family#buffer)
 
@@ -41,8 +40,7 @@ NodeJS 中所有的流都有缓冲池，缓冲池存在的目的是增加流的�
 
 内存的读写速度远远大于磁盘的读写速度。在流的应用中，当内存中的数据要存放到磁盘时，中间的传送通道可以想象为一个“管道（pipe）”,而管道里面的就是“流”。内存的数据流入管道是非常快的，当管道塞满时，内存中就会产生数据背压，数据积压在内存中，占用资源。
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-7c3c87518e926c51c65d9e73c6969707.png" alt="stream的背压问题" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-7c3c87518e926c51c65d9e73c6969707.png" alt="stream的背压问题" zoom="40%" />
 
 NodeJS Stream 的解决办法是为每一个流的 缓冲池（就是图中写入队列）设置一个浮标值（highWaterMark），当其中数据量达到这个浮标值后，往缓冲池再次 push 数据时就会返回 false，表示当前流中缓冲池内容已经达到浮标值，不希望再有数据写入了，这时我们应该立即停止数据的生产，防止缓冲池过大产生背压。
 
@@ -488,8 +486,7 @@ fs.createReadStream(file)
 
 上面的一些代码用到了`Pipe`函数。我们将他称为“管道”。
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--615f4e5c48b2a9f2dd5c0399d17e184a.png" alt="Pipe" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3%20-1--615f4e5c48b2a9f2dd5c0399d17e184a.png" alt="Pipe" zoom="40%" />
 
 管道是将上一个程序的输出作为下一个程序的输入，这是管道在 Linux 中管道的作用。NodeJS 中的管道其实也类似，它管道用于连接两个流，上游的流的输出会作为下游的流的输入。管道 sourec.pipe(dest, options) 要求 sourec 是可读的，dest 是可写的。其返回值是 dest。
 

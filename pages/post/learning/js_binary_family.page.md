@@ -6,8 +6,7 @@ injectComponents:
 scope: ['JS']
 ---
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-d83a0110d6395f3b8ddf71ae705f948b.png" alt="js的二进制" style="zoom:45%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-d83a0110d6395f3b8ddf71ae705f948b.png" alt="js的二进制" zoom="40%" />
 
 在了解[关于 NodeJS 中的流（Stream）](/post/learning/about_node_stream)这篇 post 出现多次`<Buffer xx xx>`，借此机会了解一下 JS 中的二进制操作。
 
@@ -23,8 +22,7 @@ scope: ['JS']
 
 - **Buffer**：Node.js 提供的一个二进制缓冲区，常用来处理 I/O 操作
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-508f4ff8201c8420c8e918ec282a5935.png" alt="二进制操作关系图" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-508f4ff8201c8420c8e918ec282a5935.png" alt="二进制操作关系图" zoom="40%" />
 
 ### Blob
 
@@ -266,8 +264,7 @@ Buffer 充当原始字节的容器，一个字节意味着 8 位，并且一位�
 
 Buffer 是 **Node.js** 提供的对象，前端没有，它以二进制形式临时存放在内存中的物理映射、以 [Stream](/post/learning/about_node_stream) 为搬运数据的传送带和加工器，有方向、状态、缓冲大小。 它一般应用于 IO 操作，例如接收前端请求数据时候，可以通过以下的 Buffer 的 API 对接收到的前端数据进行整合。
 
-<div style="display:flex; justify-content:center">
-<img src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-cfa9e18d0bcff3ddc504558ba87872d8.png" alt="node中Buffer创建及存储" style="zoom:40%;" /></div>
+<CenterImg src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-cfa9e18d0bcff3ddc504558ba87872d8.png" alt="node中Buffer创建及存储" zoom="40%" />
 
 #### 产生原因
 
