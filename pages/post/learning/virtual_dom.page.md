@@ -1,5 +1,5 @@
 ---
-title: '简单实现Virtual DOM和Diff算法'
+title: '简单实现Virtual DOM'
 scope: ['JS', 'browser']
 ---
 

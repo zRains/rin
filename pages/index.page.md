@@ -52,6 +52,5 @@ index: true
 <a href="https://www.jenkins.io" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-jenkins" height="30" width="40"/></a>
 <a href="https://git-scm.com/" target="_blank" rel="noreferrer"><Icon icon="bi:git" color="#f03c2e" height="30" width="40"/></a>
 <a href="https://www.docker.com/" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-docker" height="30" width="40"/></a>
-<a href="https://vuepress.vuejs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/AliasIO/wappalyzer/master/src/drivers/webextension/images/icons/VuePress.svg" alt="vuepress" width="50" height="30"/></a>
 <a href="https://circleci.com" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-light-circleci" color="#f03c2e" height="30" width="40"/></a>
 <a href="https://concourse-ci.org" target="_blank" rel="noreferrer"><Icon icon="logos:concourse" color="#f03c2e" width="40" height="30" /></a>
