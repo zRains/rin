@@ -504,7 +504,7 @@ addToAnimeProcess(cells, animeProcessArr, target) {
 
 <iframe height="600" style="width: 100%;" scrolling="no" title="2048" src="https://codepen.io/pocket-gad/embed/preview/wvpLmXo?default-tab=result&theme-id=light" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/pocket-gad/pen/wvpLmXo">
-  2048</a> by zRain (<a href="https://codepen.io/pocket-gad">@pocket-gad</a>)
+  2048</a> by zRain (<a href="https://codepen.io/pocket-gad">@zRain</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
