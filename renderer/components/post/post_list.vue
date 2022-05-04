@@ -4,6 +4,7 @@
       <a class="post" :href="page.path">
         <div class="title">{{ page.matter.title || 'Untitle' }}</div>
         <div class="utils">
+          <div v-if="page.matter.draft" class="isDraft">草稿</div>
           <div class="ctime">{{ getRelativeTime(page.ctime) }}</div>
           <div class="scope">
             {{ page.matter.scope && page.matter.scope.join(' / ') }}
@@ -76,8 +77,16 @@ export default defineComponent({
       align-items: center;
       font-size: 0.9rem;
       color: $grey5;
+      line-height: 20px;
       & > *:not(:last-child) {
         margin-right: gap(1.5);
+      }
+      .isDraft {
+        display: inline-block;
+        background: $grey8;
+        padding: 0 gap();
+        font-size: inherit;
+        color: $grey3;
       }
     }
     &:hover {
