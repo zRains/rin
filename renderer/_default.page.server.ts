@@ -7,14 +7,22 @@ import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 import readline from 'readline'
 import createApp from './App'
 
+let Pages: any
+
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['Pages', 'pageProps']
 
-export function onBeforeRender(pageContext: PageContext) {
-  const { documentProps } = pageContext.Page
+export async function onBeforeRender(pageContext: PageContext & { _allPageFiles: any }) {
+  Pages = Pages || (await resolvePages(pageContext))
+  // const needPagesRouteMap = new Map([
+  //   ['/post', 'post'],
+  //   ['/wrap/type_challenge', 'type_challenge'],
+  //   ['/wrap/sword_to_offer', 'sword_to_offer'],
+  //   ['/wrap/source_of_vue3', 'source_of_vue3']
+  // ])
   return {
     pageContext: {
-      documentProps
+      Pages
     }
   }
 }
@@ -52,7 +60,7 @@ async function resolvePages(context: { _allPageFiles: any }) {
     const fileStat = fs.statSync(path.join(path.resolve(), pagePath[pageIndex]), {})
     if (pagePath[pageIndex].endsWith('.md') && fileStat.isFile()) {
       const { data = null } = matter(await resolveMatterString(path.join(path.resolve(), pagePath[pageIndex])), {})
-      if (data) {
+      if (data && !data.index) {
         const routePath = pagePath[pageIndex].replace(/pages\/|\.page\.md/g, '')
         pages.set(routePath, {
           path: routePath,
@@ -69,12 +77,6 @@ async function resolvePages(context: { _allPageFiles: any }) {
 }
 
 export async function render(pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }) {
-  Object.defineProperty(pageContext, 'Pages', {
-    value: await resolvePages(pageContext),
-    enumerable: true,
-    configurable: true,
-    writable: true
-  })
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
   const title = pageContext.documentProps?.title || 'zrain'

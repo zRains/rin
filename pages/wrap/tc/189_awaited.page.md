@@ -1,7 +1,7 @@
 ---
 title: 'TC-189: Awaited'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Awaited](https://github.com/type-challenges/type-challenges/blob/master/questions/189-easy-awaited/README.md)

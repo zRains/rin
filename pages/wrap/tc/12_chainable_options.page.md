@@ -1,7 +1,7 @@
 ---
 title: 'TC-12: Chainable Options'
-wrap: ['tc']
 scope: ['Typescript', 'need-review']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Chainable Options](https://github.com/type-challenges/type-challenges/blob/master/questions/12-medium-chainable-options/README.md)

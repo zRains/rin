@@ -1,7 +1,7 @@
 ---
 title: 'TC-16: Pop Shift Unshift'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Pop Shift Unshift](https://github.com/type-challenges/type-challenges/blob/master/questions/16-medium-pop/README.md)

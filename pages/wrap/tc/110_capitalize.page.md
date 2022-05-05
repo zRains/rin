@@ -1,7 +1,7 @@
 ---
 title: 'TC-110: Capitalize'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Capitalize](https://github.com/type-challenges/type-challenges/blob/master/questions/110-medium-capitalize/README.md)

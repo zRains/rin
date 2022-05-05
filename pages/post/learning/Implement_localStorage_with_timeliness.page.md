@@ -1,6 +1,7 @@
 ---
 title: '实现一个具有时效性的LocalStorage'
 scope: ['JS']
+buckets: ['post', 'learning']
 ---
 
 使用`LocalStorage`时将数据放在含有过期时间戳里，取出时判断是否过期，如果过期则删除。

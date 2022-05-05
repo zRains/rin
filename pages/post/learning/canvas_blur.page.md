@@ -2,6 +2,7 @@
 title: 'Canvas为什么变得这么模糊？'
 injectComponents: [{ name: 'CanvasBlur', path: '@components/post/canvas_blur.vue' }]
 scope: ['browser', 'canvas']
+buckets: ['post', 'learning']
 ---
 
 当我使用 canvas 进行绘制时，发现总是会变的模糊不清（肯定不是因为我的近视 🤣），就像加了一层滤镜。就如下面这个例子，我画了一些东西：

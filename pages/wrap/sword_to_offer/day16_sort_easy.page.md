@@ -1,7 +1,7 @@
 ---
 title: '第16天 - 排序（简单）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 45. 把数组排成最小的数](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)

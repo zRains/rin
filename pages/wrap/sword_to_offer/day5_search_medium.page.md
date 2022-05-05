@@ -1,7 +1,7 @@
 ---
 title: '第5天 - 查找算法（中等）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 04. 二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)

@@ -1,7 +1,7 @@
 ---
 title: 'TC-15: Last of Array'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Last of Array](https://github.com/type-challenges/type-challenges/blob/master/questions/15-medium-last/README.md)

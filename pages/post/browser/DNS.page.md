@@ -1,6 +1,7 @@
 ---
 title: '大致了解一下DNS'
 scope: ['browser']
+buckets: ['post', 'browser']
 ---
 
 DNS 即域名系统，全称是 Domain Name System。当我们在浏览器输入一个 URL 地址时，浏览器要向这个 URL 的主机名对应的服务器发送请求，就得知道服务器的 IP，对于浏览器来说，DNS 的作用就是将**主机名转换成 IP 地址**。

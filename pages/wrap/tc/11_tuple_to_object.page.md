@@ -1,7 +1,7 @@
 ---
 title: 'TC-11: Tuple to Object'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Tuple to Object](https://github.com/type-challenges/type-challenges/blob/master/questions/11-easy-tuple-to-object/README.md)

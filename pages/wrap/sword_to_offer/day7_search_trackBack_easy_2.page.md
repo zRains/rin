@@ -1,7 +1,7 @@
 ---
 title: '第7天 - 搜索与回溯算法2（简单）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)

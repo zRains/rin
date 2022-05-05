@@ -1,7 +1,7 @@
 ---
 title: 'TC-2: Omit'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Omit](https://github.com/type-challenges/type-challenges/blob/master/questions/3-medium-omit/README.md)

@@ -1,7 +1,7 @@
 ---
 title: 'TC-43: Exclude'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Exclude](https://github.com/type-challenges/type-challenges/blob/master/questions/43-easy-exclude/README.md)

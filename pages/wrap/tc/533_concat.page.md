@@ -1,7 +1,7 @@
 ---
 title: 'TC-13: Concat'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Concat](https://github.com/type-challenges/type-challenges/blob/master/questions/533-easy-concat/README.md)

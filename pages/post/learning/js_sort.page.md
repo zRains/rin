@@ -1,6 +1,7 @@
 ---
 title: 'JS排序'
 scope: ['JS', 'algorithm']
+buckets: ['post', 'learning']
 ---
 
 记录几种较为人熟知的 Js 排序算法

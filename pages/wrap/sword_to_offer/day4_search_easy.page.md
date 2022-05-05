@@ -1,7 +1,7 @@
 ---
 title: '第4天 - 查找算法（简单）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)

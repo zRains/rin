@@ -4,6 +4,7 @@ injectComponents:
   - { name: 'BlobViewImg', path: '@components/post/blob_view_img.vue' }
   - { name: 'FileReaderMethods', path: '@components/post/file_reader_methods.vue' }
 scope: ['JS']
+buckets: ['post', 'learning']
 ---
 
 <CenterImg src="https://res.zrain.fun/images/2022/04/js%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6-d83a0110d6395f3b8ddf71ae705f948b.png" alt="js的二进制" zoom="40%" />

@@ -1,7 +1,7 @@
 ---
 title: 'TC-8: Readonly-2'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Readonly-2](https://github.com/type-challenges/type-challenges/blob/master/questions/8-medium-readonly-2/README.md)

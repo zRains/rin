@@ -1,7 +1,7 @@
 ---
 title: '一个组件在Vue3中大致经历了什么？'
-wrap: ['source_of_vue3']
 scope: ['Vue3', 'source']
+buckets: ['wrap', 'source_of_vue3']
 ---
 
 <img src="https://res.zrain.fun/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>

@@ -1,7 +1,7 @@
 ---
 title: 'TC-3312: Parameters'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Parameters](https://github.com/type-challenges/type-challenges/blob/master/questions/3312-easy-parameters/README.md)

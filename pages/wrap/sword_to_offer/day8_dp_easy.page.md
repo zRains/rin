@@ -1,7 +1,7 @@
 ---
 title: '第8天 - 动态规划（简单）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode', 'DP']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 10- I. 斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)

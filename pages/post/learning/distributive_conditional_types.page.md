@@ -1,6 +1,7 @@
 ---
 title: 'TypeScript中的条件分布类型为什么要这么设计？'
 scope: ['TS']
+buckets: ['post', 'learning']
 ---
 
 **条件分布类型（Distributive conditional types）**。既然是分布，那肯定离不开三元表达式。文档 [^Distributive conditional types]中这样解释：

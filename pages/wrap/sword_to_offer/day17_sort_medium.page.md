@@ -1,7 +1,7 @@
 ---
 title: '第17天 - 排序（中等）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 40. 最小的 k 个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)

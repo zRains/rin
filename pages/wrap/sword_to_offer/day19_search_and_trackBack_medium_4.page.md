@@ -1,7 +1,7 @@
 ---
 title: '第19天 - 搜索与回溯算法4（中等）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 64. 求 1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)

@@ -1,6 +1,7 @@
 ---
 title: 'JS连续赋值执行分析'
 scope: ['JS']
+buckets: ['post', 'learning']
 ---
 
 一个很经典的问题，下面一段代码输出是？

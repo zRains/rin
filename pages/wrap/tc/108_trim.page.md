@@ -1,7 +1,7 @@
 ---
 title: 'TC-108: Trim'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Trim](https://github.com/type-challenges/type-challenges/blob/master/questions/108-medium-trim/README.md)

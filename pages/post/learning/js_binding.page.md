@@ -1,6 +1,7 @@
 ---
 title: 'JS中this的绑定'
 scope: ['JS']
+buckets: ['post', 'learning']
 ---
 
 ## 前提

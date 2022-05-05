@@ -1,6 +1,7 @@
 ---
 title: '危险的target="_blank"'
 scope: ['browser']
+buckets: ['post', 'browser']
 ---
 
 ### target = "\_blank"有哪些问题？

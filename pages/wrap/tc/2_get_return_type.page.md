@@ -1,7 +1,7 @@
 ---
 title: 'TC-2: Get Return Type'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Get Return Type](https://github.com/type-challenges/type-challenges/blob/master/questions/13-warm-hello-world/README.md)

@@ -1,7 +1,7 @@
 ---
 title: '第10天 - 动态规划2（中等）'
-wrap: ['sword_to_offer']
 scope: ['algorithm', 'LeetCode', 'DP']
+buckets: ['wrap', 'sword_to_offer']
 ---
 
 ### [剑指 Offer 46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)

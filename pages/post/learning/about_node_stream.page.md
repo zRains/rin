@@ -1,6 +1,7 @@
 ---
 title: '关于NodeJS中的流（Stream）'
 scope: ['Node']
+buckets: ['post', 'learning']
 ---
 
 <CenterImg src="https://res.zrain.fun/images/2022/04/stream%E7%9A%84%E7%90%86%E8%A7%A3-250997c1315f9bf52cbe6adfc8d4a6ab.png" alt="stream的理解" zoom="38%" />

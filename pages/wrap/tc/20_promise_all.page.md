@@ -1,7 +1,7 @@
 ---
 title: 'TC-20: Promise.all'
-wrap: ['tc']
 scope: ['Typescript', 'need-review']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Promise.all](https://github.com/type-challenges/type-challenges/blob/master/questions/20-medium-promise-all/README.md)

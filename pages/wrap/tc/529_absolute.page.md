@@ -1,7 +1,7 @@
 ---
 title: 'TC-529: Absolute'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Absolute](https://github.com/type-challenges/type-challenges/blob/master/questions/529-medium-absolute/README.md)

@@ -8,30 +8,25 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, inject, computed } from 'vue'
+<script lang="ts" setup>
+import { inject, computed, toRefs } from 'vue'
 import { pageContextKey } from '../../../utils/constants'
 import { getRelativeTime } from '../../../utils/helpers'
 
-export default defineComponent({
-  name: 'WrapMatter',
-  props: {
-    wrap: {
-      type: String,
-      required: true
-    }
-  },
-  setup(props) {
-    const pageContext = inject(pageContextKey)!
-    const pages = computed(() =>
-      [...pageContext.Pages.values()]
-        .filter((page: any) => page.matter.wrap && page.matter.wrap.includes(props.wrap))
-        .sort((a: any, b: any) => b.ctime - a.ctime)
-    )
-
-    return { pages, getRelativeTime }
+const props = defineProps({
+  wrapper: {
+    type: String,
+    required: true
   }
 })
+
+const pageContext = inject(pageContextKey)!
+const { wrapper } = toRefs(props)
+const pages = computed(() =>
+  [...pageContext.Pages.values()]
+    .filter(({ matter }) => !matter.index && matter.buckets.includes(wrapper.value))
+    .sort((a: any, b: any) => b.ctime - a.ctime)
+)
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,7 @@
 ---
 title: '使用JS操作链表'
 scope: ['JS', 'Algorithm', 'LeetCode']
+buckets: ['post']
 ---
 
 ### [力扣-206](https://leetcode-cn.com/problems/reverse-linked-list/)

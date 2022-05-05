@@ -1,6 +1,7 @@
 ---
 title: '简单了解一下Shadow DOM'
 scope: ['browser']
+buckets: ['post', 'browser']
 ---
 
 ShadowDOM 主要解决一个文档中可能需要大量交互的多个 DOM 树建立和维护各自功能边界的问题。MDN 描述：

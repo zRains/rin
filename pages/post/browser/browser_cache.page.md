@@ -1,6 +1,7 @@
 ---
 title: '比较好理解的浏览器缓存'
 scope: ['browser']
+buckets: ['post', 'browser']
 ---
 
 原文章：[掘金](https://juejin.cn/post/6844903593275817998)

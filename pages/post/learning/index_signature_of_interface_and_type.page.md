@@ -1,6 +1,7 @@
 ---
 title: 'interface和type索引签名之问'
 scope: ['TS']
+buckets: ['post', 'learning']
 ---
 
 ### 问题

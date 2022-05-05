@@ -15,37 +15,27 @@
   </ul>
 </template>
 
-<script lang="ts">
-import { defineComponent, inject, computed } from 'vue'
+<script lang="ts" setup>
+import { inject, computed, toRefs } from 'vue'
 import { pageContextKey } from '../../../utils/constants'
 import { getRelativeTime } from '../../../utils/helpers'
 
-export default defineComponent({
-  name: 'PostList',
-  props: {
-    wrap: {
-      type: String,
-      required: false,
-      default: undefined
-    },
-    showWrap: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  },
-  setup(props) {
-    const pageContext = inject(pageContextKey)!
-    const pages = computed(() =>
-      [...pageContext.Pages.values()]
-        .filter(({ matter }) =>
-          props.wrap ? matter.wrap?.includes(props.wrap) : props.showWrap ? !matter.index : !matter.index && !matter.wrap
-        )
-        .sort((a, b) => b.ctime - a.ctime)
-    )
-    return { pages, getRelativeTime }
+const props = defineProps({
+  pool: {
+    type: String,
+    required: false,
+    default: undefined
   }
 })
+
+const { pool } = toRefs(props)
+
+const pageContext = inject(pageContextKey)!
+const pages = computed(() =>
+  [...pageContext.Pages.values()]
+    .filter(({ matter }) => !matter.index && (pool?.value ? matter.buckets.includes(pool.value) : true))
+    .sort((a, b) => b.ctime - a.ctime)
+)
 </script>
 
 <style lang="scss" scoped>

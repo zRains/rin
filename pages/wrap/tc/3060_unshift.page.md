@@ -1,7 +1,7 @@
 ---
 title: 'TC-3060: Unshift'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Unshift](https://github.com/type-challenges/type-challenges/blob/master/questions/3060-easy-unshift/README.md)

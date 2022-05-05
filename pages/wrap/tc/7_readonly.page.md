@@ -1,7 +1,7 @@
 ---
 title: 'TC-7: Readonly'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Readonly](https://github.com/type-challenges/type-challenges/blob/master/questions/7-easy-readonly/README.md)

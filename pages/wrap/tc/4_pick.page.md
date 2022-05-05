@@ -1,7 +1,7 @@
 ---
 title: 'TC-4: Pick'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Pick](https://github.com/type-challenges/type-challenges/blob/master/questions/4-easy-pick/README.md)

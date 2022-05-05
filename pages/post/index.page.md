@@ -8,4 +8,4 @@ injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
 
 > 听过很多道理，可依然记不住 🤣
 
-<PostList/>
+<PostList pool="post"/>

@@ -1,6 +1,7 @@
 ---
 title: 'WinPcap中使用的函数（部分）'
 scope: ['WinPcap']
+buckets: ['post', 'course']
 draft: true
 ---
 

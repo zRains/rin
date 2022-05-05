@@ -1,6 +1,7 @@
 ---
 title: 'Docker容器统一编排部署'
 scope: ['Docker']
+buckets: ['post', 'course']
 ---
 
 <CenterImg src="https://res.zrain.fun/images/2022/04/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%EF%BC%9Adocker%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92-46277f18ae888be5b15916c3748d6986.png" alt="docker容器编排大致结构" zoom="40%" />

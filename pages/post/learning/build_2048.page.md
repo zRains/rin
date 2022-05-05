@@ -2,6 +2,7 @@
 title: 'Canvas从零开始实现2048'
 injectComponents: [{ name: 'ArcToCanvas', path: '@components/post/arcto_canvas.vue' }]
 scope: ['browser', 'canvas']
+buckets: ['post', 'learning']
 ---
 
 <div style="height:150px;background:#eee4da;text-align:center;user-select:none;line-height:150px;font-size:3em;color:#776e65;font-weight:600;margin-bottom:10px">2048</div>

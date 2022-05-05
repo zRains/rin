@@ -1,6 +1,7 @@
 ---
 title: '理解一下CommonJS和ES Modules'
 scope: ['Node']
+buckets: ['post', 'learning']
 ---
 
 两种规范都是为了解决 JS 脚本直接导入才能的诸多问题。

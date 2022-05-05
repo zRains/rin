@@ -1,7 +1,7 @@
 ---
 title: 'TC-599: Merge'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Merge](https://github.com/type-challenges/type-challenges/blob/master/questions/599-medium-merge/README.md)

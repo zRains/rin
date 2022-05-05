@@ -1,7 +1,7 @@
 ---
 title: 'TC-898: Includes'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - Includes](https://github.com/type-challenges/type-challenges/blob/master/questions/898-easy-includes/README.md)

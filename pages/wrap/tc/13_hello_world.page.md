@@ -1,7 +1,7 @@
 ---
 title: 'TC-13: Hello World'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Warm-up - Hello World](https://github.com/type-challenges/type-challenges/blob/master/questions/13-warm-hello-world/README.md)

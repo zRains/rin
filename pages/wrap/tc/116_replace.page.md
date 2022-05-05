@@ -1,7 +1,7 @@
 ---
 title: 'TC-116: Replace'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Replace](https://github.com/type-challenges/type-challenges/blob/master/questions/116-medium-replace/README.md)

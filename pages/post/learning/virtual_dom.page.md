@@ -1,6 +1,7 @@
 ---
 title: '简单实现Virtual DOM'
 scope: ['JS', 'browser']
+buckets: ['post', 'learning']
 ---
 
 <CenterImg src="https://res.zrain.fun/images/2022/04/Virtual%20DOM-1466bad2aa13335eb14901523f771623.png" alt="Virtual DOM" zoom="38%" />

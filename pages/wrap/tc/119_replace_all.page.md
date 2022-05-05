@@ -1,7 +1,7 @@
 ---
 title: 'TC-119: Replace All'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Replace All](https://github.com/type-challenges/type-challenges/blob/master/questions/119-medium-replaceall/README.md)

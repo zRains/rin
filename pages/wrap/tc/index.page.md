@@ -10,4 +10,4 @@ injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
 
 <SiteBack/>
 
-<PostList wrap='tc'/>
+<PostList pool='type_challenge'/>

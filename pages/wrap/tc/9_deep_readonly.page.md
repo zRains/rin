@@ -1,7 +1,7 @@
 ---
 title: 'TC-9: Deep Readonly'
-wrap: ['tc']
 scope: ['Typescript', 'need-review']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Medium - Deep Readonly](https://github.com/type-challenges/type-challenges/blob/master/questions/9-medium-deep-readonly/README.md)

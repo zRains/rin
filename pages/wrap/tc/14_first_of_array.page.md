@@ -1,7 +1,7 @@
 ---
 title: 'TC-14: First of Array'
-wrap: ['tc']
 scope: ['Typescript']
+buckets: ['wrap', 'type_challenge']
 ---
 
 Refer: [Easy - First of Array](https://github.com/type-challenges/type-challenges/blob/master/questions/14-easy-first/README.md)

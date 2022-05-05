@@ -1,6 +1,7 @@
 ---
 title: 'Vue3位运算的巧妙之处'
 scope: ['Vue']
+buckets: ['post', 'learning']
 ---
 
 ### 疑问
