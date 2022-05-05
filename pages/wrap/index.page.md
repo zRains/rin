@@ -8,7 +8,7 @@ injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue
 
 > 大部分来自挑战、刷题系列。偶尔凑凑热闹 👀
 
-## [type-challenges](/wrap/tc)
+## [type-challenges](/wrap/type_challenge)
 
 仓库: [TypeChallenges](https://github.com/type-challenges/type-challenges)
 
