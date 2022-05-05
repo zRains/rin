@@ -29,10 +29,10 @@ const props = defineProps({
 })
 
 const { pool } = toRefs(props)
-
 const pageContext = inject(pageContextKey)!
+
 const pages = computed(() =>
-  [...pageContext.Pages.values()]
+  (pageContext.Pages as any[])
     .filter(({ matter }) => !matter.index && (pool?.value ? matter.buckets.includes(pool.value) : true))
     .sort((a, b) => b.ctime - a.ctime)
 )

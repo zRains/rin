@@ -23,7 +23,7 @@ const props = defineProps({
 const pageContext = inject(pageContextKey)!
 const { wrapper } = toRefs(props)
 const pages = computed(() =>
-  [...pageContext.Pages.values()]
+  (pageContext.Pages as any[])
     .filter(({ matter }) => !matter.index && matter.buckets.includes(wrapper.value))
     .sort((a: any, b: any) => b.ctime - a.ctime)
 )

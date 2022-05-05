@@ -7,19 +7,13 @@ import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 import readline from 'readline'
 import createApp from './App'
 
-let Pages: any
-
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['Pages', 'pageProps']
 
+let Pages: any[] = []
+
 export async function onBeforeRender(pageContext: PageContext & { _allPageFiles: any }) {
-  Pages = Pages || (await resolvePages(pageContext))
-  // const needPagesRouteMap = new Map([
-  //   ['/post', 'post'],
-  //   ['/wrap/type_challenge', 'type_challenge'],
-  //   ['/wrap/sword_to_offer', 'sword_to_offer'],
-  //   ['/wrap/source_of_vue3', 'source_of_vue3']
-  // ])
+  Pages = Pages.length === 0 ? await resolvePages(pageContext) : Pages
   return {
     pageContext: {
       Pages
@@ -53,7 +47,7 @@ function resolveMatterString(filePath: string, symbolStr: string = '---'): Promi
 }
 
 async function resolvePages(context: { _allPageFiles: any }) {
-  const pages: Map<string, any> = new Map()
+  const pages: any[] = []
   const pagePath: string[] = context._allPageFiles['.page'].map((p: { filePath: string; loadFile: Function }) => p.filePath)
   /* eslint-disable no-await-in-loop */
   for (let pageIndex = 0; pageIndex < pagePath.length; pageIndex += 1) {
@@ -62,12 +56,11 @@ async function resolvePages(context: { _allPageFiles: any }) {
       const { data = null } = matter(await resolveMatterString(path.join(path.resolve(), pagePath[pageIndex])), {})
       if (data && !data.index) {
         const routePath = pagePath[pageIndex].replace(/pages\/|\.page\.md/g, '')
-        pages.set(routePath, {
+        pages.push({
           path: routePath,
           matter: data,
           ctime: fileStat.birthtime,
-          mtime: fileStat.mtime,
-          size: fileStat.size
+          mtime: fileStat.mtime
         })
       }
     }
