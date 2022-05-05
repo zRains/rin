@@ -4,10 +4,13 @@
       <a class="post" :href="page.path">
         <div class="title">{{ page.matter.title || 'Untitle' }}</div>
         <div class="utils">
-          <div v-if="page.matter.draft" class="isDraft">草稿</div>
-          <div class="ctime">{{ getRelativeTime(page.ctime) }}</div>
+          <div class="ctime">{{ getRelativeTime(page.btime) }}</div>
           <div class="scope">
             {{ page.matter.scope && page.matter.scope.join(' / ') }}
+          </div>
+          <div class="tags">
+            <div v-if="page.mtime - page.btime <= 1e8" class="tag isCurrentUpdate">最近更新</div>
+            <div v-if="page.matter.draft" class="tag isDraft">草稿</div>
           </div>
         </div>
       </a>
@@ -34,7 +37,7 @@ const pageContext = inject(pageContextKey)!
 const pages = computed(() =>
   (pageContext.Pages as any[])
     .filter(({ matter }) => !matter.index && (pool?.value ? matter.buckets.includes(pool.value) : true))
-    .sort((a, b) => b.ctime - a.ctime)
+    .sort((a, b) => b.btime - a.btime)
 )
 </script>
 
@@ -61,6 +64,7 @@ const pages = computed(() =>
       transition-duration: 0.2s;
       font-weight: 600;
       font-size: 1.1rem;
+      line-height: 30px;
     }
     .utils {
       display: flex;
@@ -68,15 +72,24 @@ const pages = computed(() =>
       font-size: 0.9rem;
       color: $grey5;
       line-height: 20px;
-      & > *:not(:last-child) {
-        margin-right: gap(1.5);
+      .tags {
+        display: flex;
+        user-select: none;
+        .tag {
+          padding: 0 gap();
+          font-size: inherit;
+        }
+        .isCurrentUpdate {
+          background: $primary1;
+          color: $grey1;
+        }
+        .isDraft {
+          background: $grey8;
+          color: $grey3;
+        }
       }
-      .isDraft {
-        display: inline-block;
-        background: $grey8;
-        padding: 0 gap();
-        font-size: inherit;
-        color: $grey3;
+      :is(&, .tags) > *:not(:last-child) {
+        margin-right: gap(1.5);
       }
     }
     &:hover {

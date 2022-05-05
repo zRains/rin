@@ -59,8 +59,8 @@ async function resolvePages(context: { _allPageFiles: any }) {
         pages.push({
           path: routePath,
           matter: data,
-          ctime: fileStat.birthtime,
-          mtime: fileStat.mtime
+          btime: data.date,
+          mtime: +fileStat.mtime
         })
       }
     }
