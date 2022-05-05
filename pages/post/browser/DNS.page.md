@@ -1,4 +1,5 @@
 ---
+date: 1649942694480
 title: '大致了解一下DNS'
 scope: ['browser']
 buckets: ['post', 'browser']

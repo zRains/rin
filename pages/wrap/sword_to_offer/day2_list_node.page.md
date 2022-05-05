@@ -1,4 +1,5 @@
 ---
+date: 1649942694495
 title: '第2天 - 链表（简单）'
 scope: ['algorithm', 'LeetCode']
 buckets: ['wrap', 'sword_to_offer']

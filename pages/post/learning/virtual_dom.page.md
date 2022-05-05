@@ -1,4 +1,5 @@
 ---
+date: 1650601098818
 title: '简单实现Virtual DOM'
 scope: ['JS', 'browser']
 buckets: ['post', 'learning']

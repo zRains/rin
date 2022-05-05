@@ -1,4 +1,5 @@
 ---
+date: 1651741386385
 title: 'TC-610: CamelCase'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

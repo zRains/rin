@@ -1,4 +1,5 @@
 ---
+date: 1651741386359
 title: 'TC-106: Trim Left'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

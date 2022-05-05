@@ -1,4 +1,5 @@
 ---
+date: 1651741386383
 title: 'TC-531: String to Union'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

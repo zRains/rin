@@ -1,4 +1,5 @@
 ---
+date: 1651741386372
 title: 'TC-20: Promise.all'
 scope: ['Typescript', 'need-review']
 buckets: ['wrap', 'type_challenge']

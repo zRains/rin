@@ -1,4 +1,5 @@
 ---
+date: 1649942694482
 title: '简单了解一下Shadow DOM'
 scope: ['browser']
 buckets: ['post', 'browser']

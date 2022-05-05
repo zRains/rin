@@ -1,4 +1,5 @@
 ---
+date: 1649942694496
 title: '第4天 - 查找算法（简单）'
 scope: ['algorithm', 'LeetCode']
 buckets: ['wrap', 'sword_to_offer']

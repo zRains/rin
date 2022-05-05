@@ -1,4 +1,5 @@
 ---
+date: 1651741386377
 title: 'TC-3312: Parameters'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

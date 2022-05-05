@@ -1,4 +1,5 @@
 ---
+date: 1651741386381
 title: 'TC-4: Pick'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

@@ -1,4 +1,5 @@
 ---
+date: 1651741386365
 title: 'TC-12: Chainable Options'
 scope: ['Typescript', 'need-review']
 buckets: ['wrap', 'type_challenge']

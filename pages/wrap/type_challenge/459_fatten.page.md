@@ -1,4 +1,5 @@
 ---
+date: 1651741386380
 title: 'TC-13: Flatten'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

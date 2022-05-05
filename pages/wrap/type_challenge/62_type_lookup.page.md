@@ -1,4 +1,5 @@
 ---
+date: 1651741386386
 title: 'TC-62: Type Lookup'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

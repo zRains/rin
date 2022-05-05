@@ -1,4 +1,5 @@
 ---
+date: 1651741386384
 title: 'TC-599: Merge'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

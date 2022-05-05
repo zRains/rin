@@ -1,4 +1,5 @@
 ---
+date: 1651741386362
 title: 'TC-110: Capitalize'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

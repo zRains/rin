@@ -1,4 +1,5 @@
 ---
+date: 1649942694488
 title: '一个组件在Vue3中大致经历了什么？'
 scope: ['Vue3', 'source']
 buckets: ['wrap', 'source_of_vue3']

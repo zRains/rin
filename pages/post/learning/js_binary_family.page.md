@@ -1,4 +1,5 @@
 ---
+date: 1650208113000
 title: 'JS的二进制家族'
 injectComponents:
   - { name: 'BlobViewImg', path: '@components/post/blob_view_img.vue' }

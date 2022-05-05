@@ -1,4 +1,5 @@
 ---
+date: 1649942694482
 title: '危险的target="_blank"'
 scope: ['browser']
 buckets: ['post', 'browser']

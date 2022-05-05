@@ -1,4 +1,5 @@
 ---
+date: 1649942694485
 title: 'interface和type索引签名之问'
 scope: ['TS']
 buckets: ['post', 'learning']

@@ -1,4 +1,5 @@
 ---
+date: 1650808533377
 title: 'Canvas从零开始实现2048'
 injectComponents: [{ name: 'ArcToCanvas', path: '@components/post/arcto_canvas.vue' }]
 scope: ['browser', 'canvas']

@@ -1,4 +1,5 @@
 ---
+date: 1651741386364
 title: 'TC-119: Replace All'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

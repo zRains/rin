@@ -1,4 +1,5 @@
 ---
+date: 1649942694479
 title: '使用JS操作链表'
 scope: ['JS', 'Algorithm', 'LeetCode']
 buckets: ['post']
