@@ -1,5 +1,5 @@
 ---
-date: 1651741386386
+date: 1648397724000
 title: 'TC-7: Readonly'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

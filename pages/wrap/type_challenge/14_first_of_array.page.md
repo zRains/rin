@@ -1,5 +1,5 @@
 ---
-date: 1651741386367
+date: 1648397724000
 title: 'TC-14: First of Array'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

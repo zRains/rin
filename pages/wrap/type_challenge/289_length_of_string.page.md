@@ -1,5 +1,5 @@
 ---
-date: 1651741386374
+date: 1648397724000
 title: 'TC-13: Length of String'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

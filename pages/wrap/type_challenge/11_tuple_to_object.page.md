@@ -1,5 +1,5 @@
 ---
-date: 1651741386365
+date: 1648397724000
 title: 'TC-11: Tuple to Object'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

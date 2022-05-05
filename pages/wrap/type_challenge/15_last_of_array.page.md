@@ -1,5 +1,5 @@
 ---
-date: 1651741386368
+date: 1648397724000
 title: 'TC-15: Last of Array'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

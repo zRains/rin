@@ -1,5 +1,5 @@
 ---
-date: 1651741386360
+date: 1648397724000
 title: 'TC-108: Trim'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

@@ -1,5 +1,5 @@
 ---
-date: 1651741386377
+date: 1648397724000
 title: 'TC-3060: Unshift'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

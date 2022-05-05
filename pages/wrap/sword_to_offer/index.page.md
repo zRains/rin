@@ -10,4 +10,4 @@ injectComponents: [{ name: 'PostList', path: '@components/post/post_list.vue' }]
 
 <SiteBack/>
 
-<PostList wrap='sword_to_offer'/>
+<PostList pool='sword_to_offer'/>

@@ -1,5 +1,5 @@
 ---
-date: 1651741386363
+date: 1648397724000
 title: 'TC-116: Replace'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

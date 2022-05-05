@@ -1,5 +1,5 @@
 ---
-date: 1651741386361
+date: 1648397724000
 title: 'TC-10: Tuple to Union'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

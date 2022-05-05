@@ -1,5 +1,5 @@
 ---
-date: 1651741386379
+date: 1648397724000
 title: 'TC-43: Exclude'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

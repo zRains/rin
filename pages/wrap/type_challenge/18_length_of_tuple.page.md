@@ -1,5 +1,5 @@
 ---
-date: 1651741386371
+date: 1648397724000
 title: 'TC-18: Length of Tuple'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

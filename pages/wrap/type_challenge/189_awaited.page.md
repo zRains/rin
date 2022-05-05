@@ -1,5 +1,5 @@
 ---
-date: 1651741386370
+date: 1648397724000
 title: 'TC-189: Awaited'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

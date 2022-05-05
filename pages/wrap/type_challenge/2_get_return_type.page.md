@@ -1,5 +1,5 @@
 ---
-date: 1651741386375
+date: 1648397724000
 title: 'TC-2: Get Return Type'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

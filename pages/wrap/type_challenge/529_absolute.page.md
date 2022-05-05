@@ -1,5 +1,5 @@
 ---
-date: 1651741386382
+date: 1648397724000
 title: 'TC-529: Absolute'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

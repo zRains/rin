@@ -1,5 +1,5 @@
 ---
-date: 1651741386366
+date: 1648397724000
 title: 'TC-13: Hello World'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

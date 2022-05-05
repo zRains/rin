@@ -1,5 +1,5 @@
 ---
-date: 1649942694494
+date: 1650039324000
 title: '第19天 - 搜索与回溯算法4（中等）'
 scope: ['algorithm', 'LeetCode']
 buckets: ['wrap', 'sword_to_offer']

@@ -1,5 +1,5 @@
 ---
-date: 1649942694498
+date: 1649088924000
 title: '第8天 - 动态规划（简单）'
 scope: ['algorithm', 'LeetCode', 'DP']
 buckets: ['wrap', 'sword_to_offer']

@@ -1,5 +1,5 @@
 ---
-date: 1651741386371
+date: 1648397724000
 title: 'TC-119: Append Argument'
 scope: ['Typescript']
 buckets: ['wrap', 'type_challenge']

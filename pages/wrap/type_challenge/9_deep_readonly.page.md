@@ -1,5 +1,5 @@
 ---
-date: 1651741386389
+date: 1648397724000
 title: 'TC-9: Deep Readonly'
 scope: ['Typescript', 'need-review']
 buckets: ['wrap', 'type_challenge']
