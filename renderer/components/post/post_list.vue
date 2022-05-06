@@ -9,7 +9,7 @@
             {{ page.matter.scope && page.matter.scope.join(' / ') }}
           </div>
           <div class="tags">
-            <div v-if="page.mtime - page.btime <= 1e8" class="tag isCurrentUpdate">最近更新</div>
+            <div v-if="page.mtime - page.btime <= 8e7" class="tag isCurrentUpdate">最近更新</div>
             <div v-if="page.matter.draft" class="tag isDraft">草稿</div>
           </div>
         </div>

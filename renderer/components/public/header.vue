@@ -4,7 +4,7 @@
       <a href="/" class="avatar"></a>
       <ul class="linkBox">
         <li
-          v-for="link in headerLinks"
+          v-for="link in headerLinks.filter((h) => !h.disable)"
           :key="link.path"
           :class="{
             headerLink: true,

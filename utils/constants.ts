@@ -28,5 +28,11 @@ export const headerLinks = [
     name: 'note',
     label: 'note',
     disable: false
+  },
+  {
+    path: '/sandbox',
+    name: 'sandbox',
+    label: 'sandbox',
+    disable: true
   }
 ]
