@@ -36,3 +36,13 @@ export const headerLinks = [
     disable: true
   }
 ]
+
+export const sponsors = [
+  {
+    range: 1,
+    name: 'deelter',
+    avatar: 'https://www.deelter.com/images/avatar.png',
+    link: 'https://www.deelter.com',
+    desc: '从博客页面下方实时动态爬取，更新间隔周期为1小时。'
+  }
+]

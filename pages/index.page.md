@@ -50,6 +50,6 @@ index: true
 <a href="https://circleci.com" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-light-circleci" color="#f03c2e" height="30" width="40"/></a>
 <a href="https://concourse-ci.org" target="_blank" rel="noreferrer"><Icon icon="logos:concourse" color="#f03c2e" width="40" height="30" /></a>
 
-### 特别感谢：
+#### 友链：
 
 <Sponsor/>
