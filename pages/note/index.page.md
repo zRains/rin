@@ -7,6 +7,22 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### cargo 更换国内（清华）镜像源
+
+进入 cargo 安装目录，新建 `config` 文件：
+
+```text
+replace-with = 'tuna'
+
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+# 指定镜像
+
+# 清华大学镜像源
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+```
+
 ### 语法糖
 
 语法糖（syntactic sugar），是指编程语言中可以更容易的表达一个操作的语法，它可以使程序员更加容易去使用这门语言，操作可以变得更加清晰、方便，或者更加符合程序员的编程习惯。用比较通俗易懂的方式去理解就是，在之前的某个语法的基础上改变了一种写法，实现的功能相同，但是写法不同了，主要是为了让开发人员在使用过程中更方便易懂。

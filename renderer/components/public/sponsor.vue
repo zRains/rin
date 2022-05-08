@@ -62,6 +62,10 @@ import { sponsors } from '../../../utils/constants'
           position: relative;
           height: inherit;
           width: 40px;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: -o-crisp-edges;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
           background-size: cover;
           margin-right: gap();
           &::after {

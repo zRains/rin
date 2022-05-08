@@ -43,6 +43,6 @@ export const sponsors = [
     name: 'deelter',
     avatar: 'https://www.deelter.com/images/avatar.png',
     link: 'https://www.deelter.com',
-    desc: '从博客页面下方实时动态爬取，更新间隔周期为1小时。'
+    desc: '这个人很懒，什么也没留下...'
   }
 ]
