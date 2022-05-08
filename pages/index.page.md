@@ -1,5 +1,6 @@
 ---
 title: '主页'
+injectComponents: [{ name: 'Sponsor', path: '@components/public/sponsor.vue' }]
 index: true
 ---
 
@@ -9,17 +10,11 @@ index: true
 
 ---
 
-🔭 当前正在这个项目上活跃：[**Roach**](https://github.com/nonesrc/roach)
+👨‍💻 所有开源项目均在 [**Github**](https://github.com/zRains)
 
 🌱 当前正在 **React and Rust** 中摸鱼
 
-👨‍💻 所有开源项目均在 [**Github**](https://github.com/zRains)
-
-📝 这里算是记录琐事的地方吧 [**my site(yeah, here XD)**](/)
-
 💬 略知一二： [**Vue**](https://vuejs.org/)、**ECMAScript**
-
-📫 有空常联系 XD： **zrainfun@gmail.com**
 
 #### 常在这些地方混:
 
@@ -54,3 +49,7 @@ index: true
 <a href="https://www.docker.com/" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-docker" height="30" width="40"/></a>
 <a href="https://circleci.com" target="_blank" rel="noreferrer"><Icon icon="vscode-icons:file-type-light-circleci" color="#f03c2e" height="30" width="40"/></a>
 <a href="https://concourse-ci.org" target="_blank" rel="noreferrer"><Icon icon="logos:concourse" color="#f03c2e" width="40" height="30" /></a>
+
+### 特别感谢：
+
+<Sponsor/>
