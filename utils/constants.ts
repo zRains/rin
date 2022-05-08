@@ -41,7 +41,7 @@ export const sponsors = [
   {
     range: 1,
     name: 'deelter',
-    avatar: 'https://www.deelter.com/images/avatar.png',
+    avatar: 'https://www.deelter.com/images/logo.png',
     link: 'https://www.deelter.com',
     desc: '这个人很懒，什么也没留下...'
   }
