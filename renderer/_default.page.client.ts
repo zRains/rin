@@ -19,7 +19,7 @@ function onTransitionEnd() {
 useClientRouter({
   render(pageContext: PageContextBuiltInClient & PageContext) {
     if (!pageContext.isHydration) {
-      document.title = pageContext.Page.documentProps.title || "Hi 👋, I'm zrain"
+      document.title = pageContext.Page.documentProps.title || "Hi 👋, I'm zRain"
     }
     if (!AppInstance) {
       AppInstance = createApp(pageContext)

@@ -1,10 +1,10 @@
 ---
-title: "Hi 👋, I'm zrain"
+title: 'Home / 主页'
 injectComponents: [{ name: 'Sponsor', path: '@components/public/sponsor.vue' }]
 index: true
 ---
 
-# Hi 👋, I'm zrain
+# Hi 👋, I'm zRain
 
 ### 一个以前端为兴趣的学生党。路漫漫其修远兮，吾将上下而~~摸鱼~~求索。
 
