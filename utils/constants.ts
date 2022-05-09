@@ -8,25 +8,25 @@ export const headerLinks = [
   {
     path: '/',
     name: 'home',
-    label: 'home',
+    label: 'Home',
     disable: false
   },
   {
     path: '/post',
     name: 'post',
-    label: 'post',
+    label: 'Post',
     disable: false
   },
   {
     path: '/wrap',
     name: 'wrap',
-    label: 'wrap',
+    label: 'Wrap',
     disable: false
   },
   {
     path: '/note',
     name: 'note',
-    label: 'note',
+    label: 'Note',
     disable: false
   },
   {

@@ -1,5 +1,5 @@
 ---
-title: '笔记'
+title: 'Note / 笔记'
 index: true
 ---
 

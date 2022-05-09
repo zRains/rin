@@ -72,18 +72,29 @@ async function resolvePages(context: { _allPageFiles: any }) {
 export async function render(pageContext: PageContextBuiltIn & PageContext & { _allPageFiles: any }) {
   const App = createApp(pageContext)
   const appHtml = await renderToString(App)
-  const title = pageContext.documentProps?.title || 'zrain'
-  const desc = pageContext.documentProps?.desc || 'Dreaming up ideas and making them come true is where my passion lies.'
+  const title = pageContext.documentProps?.title || "Hi 👋, I'm zrain"
+  const desc = pageContext.documentProps?.desc || '一个以前端为兴趣的学生党的博客。路漫漫其修远兮，吾将上下而摸鱼。'
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <link rel="icon" href="/images/avatar.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;600;800&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+        <meta property="og:title" content="Hi 👋, I'm zrain">
+        <meta property="og:description" content="zRain的简陋博客。分享一些技术文章和个人感悟。路漫漫其修远兮，吾将上下而摸鱼。">
+        <meta property="og:image" content="/images/og_image.png">
+        <meta property="og:url" content=""https://zrain.fun/">
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://zrain.fun/">
+        <meta property="twitter:title" content="Hi 👋, I'm zrain">
+        <meta property="twitter:description" content="zRain的简陋博客。分享一些技术文章和个人感悟。路漫漫其修远兮，吾将上下而摸鱼。">
+        <meta property="twitter:image" content="/images/og_image.png">
         <meta name="description" content="${desc}" />
+        <meta name="keywords" content="zRain,Blog,博客,技术文章,个人感悟" />
+        <meta name="author" content="zRain" />
         <title>${title}</title>
       </head>
       <body>

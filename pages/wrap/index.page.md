@@ -1,5 +1,5 @@
 ---
-title: '系列'
+title: 'Warp / 系列'
 index: true
 injectComponents: [{ name: 'WrapMatter', path: '@components/wrap/wrap_matter.vue' }]
 ---
