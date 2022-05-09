@@ -32,11 +32,11 @@ export const enum ShapeFlags {
 
 与操作：当两个比特位都为 1 时，结果就为 1，其余情况均为 0。
 
-<img src="https://res.zrain.fun/images/2022/04/bit%20operation1-6cf5016a8296c3f620251c3a6f5a777c.png" alt="bit operation1" style="zoom:30%;" />
+<CenterImg src="https://res.zrain.fun/images/2022/04/bit%20operation1-6cf5016a8296c3f620251c3a6f5a777c.png" alt="bit operation1" zoom="30%" />
 
 或操作：当其中一个比特位为 1 或者两个都为 1，结果就是 1，否则为 0。
 
-<img src="https://res.zrain.fun/images/2022/04/bit%20operation1%20-1--fb49bca971ed23123bd0ab6a2073fd06.png" alt="bit operation2" style="zoom:30%;" />
+<CenterImg src="https://res.zrain.fun/images/2022/04/bit%20operation1%20-1--fb49bca971ed23123bd0ab6a2073fd06.png" alt="bit operation2" zoom="30%" />
 
 下面是 mini-vue 的`createVNode`函数：
 

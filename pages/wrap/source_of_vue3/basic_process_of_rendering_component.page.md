@@ -5,7 +5,7 @@ scope: ['Vue3', 'source']
 buckets: ['wrap', 'source_of_vue3']
 ---
 
-<img src="https://res.zrain.fun/images/2022/04/Page%201-f0c713c6c72f0292fb6370d2ad16375f.png"/>
+<CenterImg src="https://res.zrain.fun/images/2022/04/vue%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%A7%E8%87%B4%E8%BF%87%E7%A8%8B-e0dbeb0124341a58bfc99f7800c4c3f7.png" alt="vue初始化大致过程" />
 
 ### 目录
 
@@ -226,7 +226,7 @@ function processComponent(n1, n2, container, parentComponent) {
 
 其中，`n1`为`n2`的生成前一个`subTree`，可以理解为后者是前者更新后的 vnode。很简单的逻辑，`n1`为 null 则表明需要挂载，因为你前一次的记录都没有，还怎么更新啊，肯定要先挂载产生一个记录啊。🤣
 
-<img src="https://res.zrain.fun/images/2022/04/processComponent-4a486fa454ace19989a2c055a01eb98d.png" alt="processComponent" />
+<CenterImg src="https://res.zrain.fun/images/2022/04/processComponent-4a486fa454ace19989a2c055a01eb98d.png" alt="processComponent" zoom="40%" />
 
 ### `mountComponent` - 组件实例被创建
 
@@ -757,4 +757,4 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
 
 </details>
 
-<img src="https://res.zrain.fun/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" style="zoom:40%;" />
+<CenterImg src="https://res.zrain.fun/images/2022/04/normalizeChildren-bbeb480aa1970200d25de09b64ac4711.png" alt="normalizeChildren" zoom="40%" />

@@ -12,11 +12,8 @@ index: true
 进入 cargo 安装目录，新建 `config` 文件：
 
 ```text
-replace-with = 'tuna'
-
 [source.crates-io]
-registry = "https://github.com/rust-lang/crates.io-index"
-# 指定镜像
+replace-with = 'tuna'
 
 # 清华大学镜像源
 [source.tuna]
