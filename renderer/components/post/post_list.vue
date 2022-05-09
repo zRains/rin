@@ -2,15 +2,15 @@
   <ul class="postList">
     <li v-for="page in pages" :key="page.path">
       <a class="post" :href="page.path">
-        <div class="title">{{ page.matter.title || 'Untitle' }}</div>
+        <div class="title">{{ page.matter.title || '无标题' }}</div>
         <div class="utils">
           <div class="ctime">{{ getRelativeTime(page.btime) }}</div>
           <div class="scope">
             {{ page.matter.scope && page.matter.scope.join(' / ') }}
           </div>
           <div class="tags">
-            <div v-if="page.mtime - page.btime <= 8e7" class="tag isCurrentUpdate">最近更新</div>
-            <div v-if="page.matter.draft" class="tag isDraft">草稿</div>
+            <div v-if="new Date() - page.mtime <= 8e7" class="tag isCurrentUpdate"><Icon icon="dashicons:update-alt" />更改</div>
+            <div v-if="page.matter.draft" class="tag isDraft"><Icon icon="charm:git-request-draft" />草稿</div>
           </div>
         </div>
       </a>
@@ -61,7 +61,7 @@ const pages = computed(() =>
     .title {
       display: inline-block;
       transition-property: color;
-      transition-duration: 0.2s;
+      transition-duration: 0.1s;
       font-weight: 600;
       font-size: 1.1rem;
       line-height: 30px;
@@ -73,15 +73,17 @@ const pages = computed(() =>
       color: $grey5;
       line-height: 20px;
       .tags {
-        display: flex;
         user-select: none;
         .tag {
-          padding: 0 gap();
+          display: inline-flex;
+          align-items: center;
+          height: 20px;
+          padding: 0 gap(0.6);
           font-size: inherit;
         }
         .isCurrentUpdate {
           background: $primary1;
-          color: $grey1;
+          color: $grey10;
         }
         .isDraft {
           background: $grey8;
