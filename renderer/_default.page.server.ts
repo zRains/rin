@@ -86,12 +86,15 @@ export async function render(pageContext: PageContextBuiltIn & PageContext & { _
         <meta property="og:title" content="Hi 👋, I'm zRain">
         <meta property="og:description" content="zRain的简陋博客。分享一些技术文章和个人感悟。路漫漫其修远兮，吾将上下而摸鱼。">
         <meta property="og:image" content="https://zrain.fun/images/og_image.png">
-        <meta property="og:url" content=""https://zrain.fun/">
+        <meta property="og:url" content="https://zrain.fun/">
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://zrain.fun/">
         <meta property="twitter:title" content="Hi 👋, I'm zRain">
         <meta property="twitter:description" content="zRain的简陋博客。分享一些技术文章和个人感悟。路漫漫其修远兮，吾将上下而摸鱼。">
         <meta property="twitter:image" content="https://zrain.fun/images/og_image.png">
+        <meta itemprop="name" content="Hi 👋, I'm zRain">
+        <meta itemprop="Description" content="路漫漫其修远兮，吾将上下而摸鱼。">
+        <meta itemprop="image" content="https://zrain.fun/images/avatar.png">
         <meta name="description" content="${desc}" />
         <meta name="keywords" content="zRain,Blog,博客,技术文章,个人感悟" />
         <meta name="author" content="zRain" />
