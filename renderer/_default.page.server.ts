@@ -3,8 +3,8 @@ import { renderToString } from '@vue/server-renderer'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 import readline from 'readline'
+import type { PageContextBuiltIn } from 'vite-plugin-ssr'
 import createApp from './App'
 
 // See https://vite-plugin-ssr.com/data-fetching
@@ -75,13 +75,13 @@ export async function render(pageContext: PageContextBuiltIn & PageContext & { _
   const title = pageContext.documentProps?.title || "Hi 👋, I'm zRain"
   const desc = pageContext.documentProps?.desc || '一个以前端为兴趣的学生党的博客。路漫漫其修远兮，吾将上下而摸鱼。'
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="en">
+    <html lang="zh">
       <head>
-        <meta charset="UTF-8" />
         <link rel="icon" href="/images/avatar.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;600;800&display=swap" rel="stylesheet">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
         <meta property="og:title" content="Hi 👋, I'm zRain">
         <meta property="og:description" content="zRain的简陋博客。分享一些技术文章和个人感悟。路漫漫其修远兮，吾将上下而摸鱼。">
