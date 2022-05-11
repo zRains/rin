@@ -7,7 +7,7 @@ buckets: ['wrap', 'type_challenge']
 
 Refer: [Easy - Readonly](https://github.com/type-challenges/type-challenges/blob/master/questions/7-easy-readonly/README.md)
 
-Relation: [Medium - Readonly-2](/wrap/tc/8_readonly_2)
+Relation: [Medium - Readonly-2](/wrap/type_challenge/8_readonly_2)
 
 ### Describe
 
