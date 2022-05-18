@@ -6,6 +6,7 @@
       <div class="license">
         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC-BY-NC-SA-4.0</a> © <a href="https://zrain.fun">zrain</a>
       </div>
+      <div class="timeStamp"><Icon icon="ic:twotone-access-time" />{{ +new Date() }}</div>
     </footer>
   </div>
 </template>
@@ -53,17 +54,26 @@ import Header from '../components/public/header.vue'
   }
   footer {
     padding: gap(5) gap(1);
-    .license {
+    .license,
+    .timeStamp {
+      display: flex;
+      align-items: center;
       margin: 0 auto;
       max-width: $maxContentWidth;
       font-size: 0.9rem;
       color: $grey6;
-      a {
-        color: inherit;
-        &:hover {
-          text-decoration: underline;
-        }
+      .iconify {
+        margin-right: gap(0.5);
       }
+    }
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    & > *:not(:last-child) {
+      margin-bottom: gap(0.5);
     }
   }
 }
