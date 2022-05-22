@@ -51,9 +51,7 @@ var findNumberIn2DArray = function (matrix, target) {
 }
 ```
 
-#### 引用
-
-[Krahets - 面试题 04. 二维数组中的查找（标志数，清晰图解）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/)
+<small>\* 引用自[Krahets - 面试题 04. 二维数组中的查找（标志数，清晰图解）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/)</small>
 
 ---
 
