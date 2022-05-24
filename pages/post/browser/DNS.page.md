@@ -15,7 +15,7 @@ buckets: ['post', 'browser']
 
 互联网上的域名系统是一个分布式的系统，结构上是一个四层的树状层次结构，如下图所示：
 
-<CenterImg src="https://res.zrain.fun/images/2022/05/DNS_process-d7e392dac3fb4f55e3852720c362878e.png" alt="DNS_process" zoom="40%" />
+<CenterImg src="https://res.zrain.fun/images/2022/05/dns-89e7cb38c62436dd67f66a2bde5c5f79.png" alt="DNS" zoom="40%" />
 
 <br/>
 
@@ -51,7 +51,7 @@ DNS 解析分为 **递归查询** 和 **迭代查询**（在算法中也被称�
 
 如果 DNS 服务器查不到该域名，它不会替客户端完成后续的查询工作，而是回复下一步应当向哪一个域名服务器进行查询，随后客户端重新向这个新的 DNS 服务器发送查询请求。
 
-<CenterImg src="https://res.zrain.fun/images/2022/05/DNS_process_2-82c43a3bcfcbb0634fb8a67978971616.png" alt="DNS_process_2" zoom="60%" />
+<CenterImg src="https://res.zrain.fun/images/2022/05/dns_2-4b4a91ec457738ebf1feb22cf7ee8432.png" alt="DNS_process_2" zoom="50%" />
 
 <br/>
 
