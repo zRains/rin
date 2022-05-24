@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex; justify-content: center">
-    <img :style="{ zoom }" :src="src" :alt="alt" />
+    <img :style="{ zoom, 'image-rendering': '-webkit-optimize-contrast' }" :src="src" :alt="alt" />
   </div>
 </template>
 

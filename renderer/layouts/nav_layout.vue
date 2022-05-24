@@ -1,18 +1,24 @@
 <template>
   <div class="navLayout">
-    <Header />
+    <SiteHeader />
     <div class="layoutContent"><slot /></div>
     <footer>
       <div class="license">
         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC-BY-NC-SA-4.0</a> © <a href="https://zrain.fun">zrain</a>
       </div>
-      <div class="timeStamp"><Icon icon="ic:twotone-access-time" />{{ +new Date() }}</div>
+      <div class="timeStamp"><Icon icon="ic:twotone-access-time" />{{ timeStamp }}</div>
     </footer>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Header from '../components/public/header.vue'
+import { onMounted, ref } from 'vue'
+import SiteHeader from '../components/public/site_header.vue'
+
+const timeStamp = ref<number>(NaN)
+onMounted(() => {
+  timeStamp.value = +new Date()
+})
 </script>
 
 <style lang="scss">
