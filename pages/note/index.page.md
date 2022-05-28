@@ -7,6 +7,20 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### Rust 中可派生的 Trait
+
+- 比较 trait: Eq, PartialEq, Ord, PartialOrd。
+
+- Clone, 用来从 &T 创建副本 T。
+
+- Copy，使类型具有 “复制语义”（copy semantics）而非 “移动语义”（move semantics）。
+
+- Hash，从 &T 计算哈希值（hash）。
+
+- Default, 创建数据类型的一个空实例。
+
+- Debug，使用 {:?} formatter 来格式化一个值。
+
 ### 捕获与冒泡
 
 事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题。下面是一个基本示例：
