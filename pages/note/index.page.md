@@ -9,7 +9,7 @@ index: true
 
 ### OSI 七层模型基本理解
 
-<CenterImg src="https://res.zrain.fun/images/2022/05/OSI_process-e85c7ce87a7bb4838805412298935998.png" alt="OSI_process" zoom="45%" />
+<CenterImg src="https://res.zrain.fun/images/2022/05/OSI_process-5d8b0d87dab735ef5d7c95bb71352da3.png" alt="OSI_process" zoom="45%" />
 
 <br/>
 
