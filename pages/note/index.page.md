@@ -7,6 +7,22 @@ index: true
 
 > 简短的笔记，也许是我不想写这么多罢了 📝
 
+### OSI 七层模型基本理解
+
+<CenterImg src="https://res.zrain.fun/images/2022/05/OSI_process-e85c7ce87a7bb4838805412298935998.png" alt="OSI_process" zoom="45%" />
+
+<br/>
+
+|   OSI 层   |                       功能                        |                应用（协议）                |
+| :--------: | :-----------------------------------------------: | :----------------------------------------: |
+|   应用层   |      文件传输、电子邮件、文件服务、虚拟终端       |  TFTP、HTTP、SNMP、FTP、SMTP、DNS、Telnet  |
+|   表示层   |         数据格式转化、代码转换、数据加密          |                  没有协议                  |
+|   会话层   |            解除或建立与别的节点的联系             |                  没有协议                  |
+|   传输层   |                 提供端对端的接口                  |                  TCP、UDP                  |
+|   网络层   |                 为数据包选择路由                  | IP、ICMP、RIP（动态路由）、OSPF、BGP、IGMP |
+| 数据链路层 | 传输有地址的帧（以太网 MAC 帧等）以及错误检测功能 |      SLIP、CSLIP、PPP、ARP、RARP、MTU      |
+|   网络层   |       以二进制数据小时在物理媒体上传输数据        |        ISO2110、IEEE802、IEEE802.2         |
+
 ### Rust 中可派生的 Trait
 
 - 比较 trait: Eq, PartialEq, Ord, PartialOrd。
@@ -46,7 +62,7 @@ index: true
 
 大致对应：
 
-<CenterImg src="https://res.zrain.fun/images/2022/05/bubbling_and_capture-ed43c2beeb5a8c65ad2d85c990b3a381.png" alt="bubbling_and_capture" zoom="20%" />
+<CenterImg src="https://res.zrain.fun/images/2022/05/bubbling_and_capture-ed43c2beeb5a8c65ad2d85c990b3a381.png" alt="bubbling_and_capture" zoom="30%" />
 
 在**事件函数**中通过下列方法阻止事件冒泡：
 
