@@ -21,7 +21,7 @@ index: true
 |   传输层   |                 提供端对端的接口                  |                  TCP、UDP                  |
 |   网络层   |                 为数据包选择路由                  | IP、ICMP、RIP（动态路由）、OSPF、BGP、IGMP |
 | 数据链路层 | 传输有地址的帧（以太网 MAC 帧等）以及错误检测功能 |      SLIP、CSLIP、PPP、ARP、RARP、MTU      |
-|   网络层   |       以二进制数据小时在物理媒体上传输数据        |        ISO2110、IEEE802、IEEE802.2         |
+|   物理层   |       以二进制数据小时在物理媒体上传输数据        |        ISO2110、IEEE802、IEEE802.2         |
 
 ### Rust 中可派生的 Trait
 
